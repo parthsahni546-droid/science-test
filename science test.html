@@ -1,0 +1,4128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Science Test – Measurement of Time and Motion</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   MAIN TEST STYLES (DARK THEME)
+   ========================================================= */
+:root{
+  --bg1:#041a2b;
+  --bg2:#0b3a53;
+  --card:rgba(255,255,255,.07);
+  --text:#eaf8ff;
+  --muted:#9fc7d9;
+  --accent:#2de2e6;
+  --accent2:#ff9f1c;
+  --green:#7CFC9a;
+  --red:#ff5d5d;
+  --line:rgba(120,220,255,.25);
+  --sec:#2de2e6;
+}
+
+*{box-sizing:border-box}
+
+html,body{min-height:100%}
+
+body{
+  margin:0;
+  font-family:"Poppins","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  background:radial-gradient(circle at 20% 10%,var(--bg2),var(--bg1) 70%);
+  background-attachment:fixed;
+  color:var(--text);
+  min-height:100vh;
+}
+
+body.intro-active{
+  overflow:hidden;
+  height:100%;
+}
+
+body.intro-active #muteBtn{
+  display:none;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(45,226,230,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(45,226,230,.07) 1px,transparent 1px);
+  background-size:36px 36px;
+}
+
+.bg-glow{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(80px);
+  z-index:0;
+  pointer-events:none;
+  animation:float 10s ease-in-out infinite;
+}
+.bg1{width:320px;height:320px;background:#0aa6c2;opacity:.3;top:-80px;right:-80px}
+.bg2{width:280px;height:280px;background:#ff9f1c;opacity:.16;bottom:-90px;left:-70px;animation-delay:-5s}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  position:relative;
+  z-index:1;
+  width:min(760px,94%);
+  margin:auto;
+  padding:62px 0 45px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 25px 60px rgba(0,0,0,.45);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  transition:box-shadow .4s,border-color .4s;
+}
+
+.card.danger{
+  border-color:var(--red);
+  box-shadow:0 0 0 1px var(--red),0 0 45px rgba(255,93,93,.45);
+}
+
+.hidden{
+  display:none!important;
+}
+
+.center{
+  text-align:center;
+}
+
+.logo{
+  width:68px;
+  height:68px;
+  margin:0 auto 18px;
+  border-radius:20px;
+  background:linear-gradient(135deg,var(--sec),#8affc1);
+  color:#032433;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:800;
+  box-shadow:0 0 28px -4px var(--sec);
+}
+
+h1,h2,h3{
+  margin-top:0;
+}
+
+h1{font-size:29px;margin-bottom:10px}
+h2{font-size:24px;margin-bottom:10px}
+h3{font-size:18px}
+
+p{
+  line-height:1.6;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.primary{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:14px 18px;
+  background:linear-gradient(90deg,var(--sec),#8affc1);
+  color:#032433;
+  font-weight:800;
+  box-shadow:0 10px 26px -8px var(--sec);
+  transition:.2s;
+}
+
+.primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px -6px var(--sec);
+}
+
+.primary:active{
+  transform:scale(.98);
+}
+
+.whatsapp-btn{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:14px 18px;
+  background:#25D366;
+  color:#05341a;
+  font-weight:800;
+  box-shadow:0 10px 26px -8px #25D366;
+  transition:.2s;
+}
+
+.whatsapp-btn:hover{
+  transform:translateY(-2px);
+}
+
+.whatsapp-btn:active{
+  transform:scale(.98);
+}
+
+.secondary{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:12px 17px;
+  background:rgba(255,255,255,.07);
+  color:var(--text);
+  font-weight:700;
+  transition:.2s;
+}
+
+.secondary:hover{
+  border-color:var(--sec);
+}
+
+.secondary:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.rule-list{
+  display:grid;
+  gap:12px;
+  margin:20px 0;
+}
+
+.rule{
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:rgba(255,255,255,.05);
+  line-height:1.55;
+}
+
+.section-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+  margin:20px 0;
+}
+
+.section-box{
+  padding:17px;
+  border:1px solid var(--line);
+  border-left:4px solid var(--sec);
+  border-radius:17px;
+  background:rgba(255,255,255,.05);
+  line-height:1.55;
+}
+
+.section-box strong{
+  display:block;
+  margin-bottom:7px;
+}
+
+.warning{
+  padding:15px;
+  border-radius:15px;
+  background:rgba(255,159,28,.12);
+  border:1px solid rgba(255,159,28,.45);
+  color:#ffd9a0;
+  line-height:1.55;
+  margin:18px 0;
+}
+
+.student-banner{
+  padding:12px 16px;
+  border-radius:14px;
+  background:rgba(45,226,230,.1);
+  border:1px solid rgba(45,226,230,.4);
+  color:var(--accent);
+  font-weight:800;
+  margin-bottom:16px;
+}
+
+.question-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.badge{
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  color:var(--sec);
+  border:1px solid var(--sec);
+  font-weight:700;
+  font-size:13px;
+}
+
+/* circular timer */
+.ring{
+  position:relative;
+  width:64px;
+  height:64px;
+  flex:none;
+}
+.ring svg{width:100%;height:100%}
+.ring-bg{fill:none;stroke:rgba(255,255,255,.12);stroke-width:6}
+.ring-fg{fill:none;stroke:var(--sec);stroke-width:6;stroke-linecap:round;transition:stroke .3s}
+.ring.low .ring-fg{stroke:var(--red)}
+.ring span{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:15px;
+}
+.ring.low span{color:var(--red)}
+
+.current-progress{
+  padding:13px 15px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  border-radius:14px;
+  margin-bottom:22px;
+  line-height:1.9;
+}
+
+.progress-area{
+  margin:8px 0 23px;
+  padding-top:14px;
+}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:9px;
+}
+
+.progress-track{
+  position:relative;
+  height:8px;
+  background:rgba(255,255,255,.12);
+  border-radius:99px;
+}
+
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--sec),#8affc1);
+  border-radius:99px;
+  transition:width .25s;
+}
+
+.progress-car{
+  position:absolute;
+  top:-17px;
+  font-size:17px;
+  transform:translateX(-100%);
+  transition:left .25s;
+  line-height:1;
+}
+
+.question{
+  font-size:21px;
+  font-weight:700;
+  line-height:1.45;
+  margin:0 0 20px;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+}
+
+.option{
+  width:100%;
+  text-align:left;
+  padding:15px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.06);
+  border-radius:15px;
+  color:var(--text);
+  transition:.18s;
+}
+
+.option:hover{
+  border-color:var(--sec);
+  transform:translateY(-1px);
+}
+
+.option.selected{
+  border-color:var(--sec);
+  background:rgba(255,255,255,.13);
+  box-shadow:0 0 0 3px rgba(255,255,255,.06),0 0 20px -4px var(--sec);
+}
+
+.option:disabled{
+  cursor:not-allowed;
+  opacity:.6;
+  transform:none;
+}
+
+.text-answer,
+.jump-input{
+  width:100%;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.07);
+  color:var(--text);
+  outline:none;
+  transition:.2s;
+}
+
+.text-answer::placeholder,
+.jump-input::placeholder{
+  color:#6f98ab;
+}
+
+.text-answer:focus,
+.jump-input:focus{
+  border-color:var(--sec);
+  box-shadow:0 0 0 4px rgba(45,226,230,.18);
+}
+
+.text-answer:disabled{
+  background:rgba(255,255,255,.03);
+  opacity:.6;
+}
+
+.lock-note{
+  margin-top:15px;
+  padding:12px 14px;
+  background:rgba(255,93,93,.12);
+  color:#ff9d9d;
+  border:1px solid rgba(255,93,93,.45);
+  border-radius:13px;
+  font-size:14px;
+}
+
+.nav-area{
+  margin-top:28px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+}
+
+.nav-buttons{
+  display:flex;
+  gap:12px;
+}
+
+.nav-buttons button{
+  flex:1;
+}
+
+.jump-area{
+  margin-top:19px;
+  padding:16px;
+  border-radius:16px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+}
+
+.jump-trigger{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:var(--sec);
+  font-weight:700;
+  padding:4px;
+}
+
+.jump-form{
+  display:flex;
+  gap:10px;
+  margin-top:13px;
+}
+
+.jump-input{
+  min-width:0;
+  flex:1;
+  padding:12px;
+  border-radius:12px;
+}
+
+.jump-error{
+  color:#ff9d9d;
+  font-size:13px;
+  margin-top:9px;
+}
+
+.journey{
+  text-align:center;
+  padding:38px 12px;
+}
+
+.journey-line{
+  margin:20px 0;
+  font-size:18px;
+  font-weight:700;
+  color:var(--sec);
+  word-break:break-word;
+  line-height:1.8;
+}
+
+.fade{
+  animation:fade .35s ease;
+}
+
+.slide{
+  animation:slideIn .35s ease;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes slideIn{
+  from{opacity:0;transform:translateX(26px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+.score-grid{
+  display:grid;
+  gap:12px;
+  margin:22px 0;
+}
+
+.score-row{
+  padding:15px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.06);
+  border-radius:15px;
+}
+
+.score-line{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:10px;
+}
+
+.mini-track{
+  height:7px;
+  background:rgba(255,255,255,.12);
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.mini-fill{
+  height:100%;
+  width:0;
+  border-radius:99px;
+  transition:width 1s ease;
+}
+
+.total-score{
+  padding:20px;
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(45,226,230,.16),rgba(138,255,193,.1));
+  border:1px solid rgba(45,226,230,.4);
+  text-align:center;
+  margin:18px 0;
+}
+
+.total-score .big{
+  font-size:38px;
+  font-weight:800;
+  color:var(--accent);
+}
+
+.medal{
+  font-size:54px;
+  line-height:1;
+  margin:6px 0;
+}
+
+.medal-name{
+  font-weight:800;
+  letter-spacing:1px;
+  color:var(--accent2);
+}
+
+.result-msg{
+  font-size:20px;
+  font-weight:800;
+  margin:8px 0 0;
+}
+
+.review-grid{
+  display:grid;
+  gap:12px;
+  margin-top:20px;
+}
+
+.review-card{
+  padding:17px;
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:rgba(255,255,255,.06);
+}
+
+.review-card.correct{
+  border-left:5px solid var(--green);
+}
+
+.review-card.wrong{
+  border-left:5px solid var(--red);
+}
+
+.review-q{
+  font-weight:700;
+  line-height:1.5;
+  margin-bottom:13px;
+}
+
+.answer-line{
+  margin:7px 0;
+  line-height:1.5;
+}
+
+.correct-text{
+  color:var(--green);
+  font-weight:700;
+}
+
+.wrong-text{
+  color:#ff8f8f;
+  font-weight:700;
+}
+
+.explanation{
+  margin-top:12px;
+  padding:12px;
+  background:rgba(255,255,255,.06);
+  border-radius:12px;
+  font-size:14px;
+  line-height:1.55;
+  color:var(--muted);
+}
+
+.choice-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:22px;
+}
+
+.footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:20px;
+}
+
+/* popup + mute + confetti */
+.popup{
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%) translateY(-150px);
+  z-index:140;
+  max-width:min(430px,calc(100% - 120px));
+  padding:12px 18px;
+  border-radius:14px;
+  font-weight:700;
+  font-size:14px;
+  text-align:center;
+  color:white;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  transition:transform .3s ease;
+  pointer-events:none;
+}
+.popup.show{transform:translateX(-50%) translateY(0)}
+.popup.ok{background:#1f9d5c}
+.popup.warn{background:#e08a00}
+
+.mute-btn{
+  position:fixed;
+  top:12px;
+  right:12px;
+  z-index:150;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  background:rgba(4,26,43,.75);
+  color:var(--text);
+  font-size:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+
+#confetti{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:90;
+}
+
+@media(max-width:560px){
+  .app{
+    width:94%;
+    padding-top:62px;
+    padding-bottom:35px;
+  }
+
+  .card{
+    padding:20px 17px;
+    border-radius:20px;
+  }
+
+  h1{font-size:25px}
+  h2{font-size:21px}
+
+  .section-grid{grid-template-columns:1fr}
+  .question{font-size:19px}
+  .nav-buttons{flex-direction:column}
+  .jump-form{flex-direction:column}
+  .choice-row{grid-template-columns:1fr}
+}
+
+/* =========================================================
+   WELCOME SCREEN STYLES (scoped so they don't clash)
+   ========================================================= */
+#welcomeScreen{
+  --bg1:#041a2b; --bg2:#0b3a53; --card:rgba(255,255,255,.07); --border:rgba(120,220,255,.25);
+  --text:#eaf8ff; --muted:#9fc7d9; --accent:#2de2e6; --accent2:#ff9f1c; --ok:#7CFC9a;
+  position:fixed;inset:0;z-index:50;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  font-family:"Poppins","Segoe UI",system-ui,-apple-system,sans-serif;color:var(--text);
+  background:radial-gradient(circle at 20% 10%,var(--bg2),var(--bg1) 70%);
+  display:flex;overflow-x:hidden;overflow-y:auto;
+}
+#welcomeScreen.hidden{display:none!important}
+#welcomeScreen *{box-sizing:border-box;margin:0;padding:0}
+#welcomeScreen p{line-height:normal}
+#welcomeScreen::before{content:"";position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(rgba(45,226,230,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(45,226,230,.07) 1px,transparent 1px);
+  background-size:36px 36px;}
+#welcomeScreen .glow{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;animation:float 10s ease-in-out infinite}
+#welcomeScreen .g1{width:320px;height:320px;background:#0aa6c2;opacity:.35;top:-80px;right:-80px}
+#welcomeScreen .g2{width:280px;height:280px;background:#ff9f1c;opacity:.2;bottom:-90px;left:-70px;animation-delay:-5s}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,35px)}}
+#welcomeScreen .wrap{position:relative;z-index:1;width:100%;max-width:540px;padding:20px;margin:auto}
+#welcomeScreen .card{background:var(--card);border:1px solid var(--border);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-radius:28px;padding:30px 24px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.5);
+  animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:none}}
+#welcomeScreen .badge{display:inline-block;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:999px;
+  background:rgba(45,226,230,.12);color:var(--accent);border:1px solid rgba(45,226,230,.4);margin-bottom:16px;font-weight:600}
+
+/* clock */
+#welcomeScreen .clock{width:110px;height:110px;margin:0 auto 16px;border-radius:50%;position:relative;
+  background:radial-gradient(circle,#0d4660,#06283a);border:4px solid var(--accent);
+  box-shadow:0 0 30px rgba(45,226,230,.5),inset 0 0 20px rgba(0,0,0,.5)}
+#welcomeScreen .tick{position:absolute;left:50%;top:50%;width:2px;height:8px;background:var(--muted);transform-origin:0 0}
+#welcomeScreen .hand{position:absolute;left:50%;bottom:50%;transform-origin:bottom center;border-radius:4px}
+#welcomeScreen .hh{width:4px;height:26px;margin-left:-2px;background:#fff;animation:spin 43200s linear infinite}
+#welcomeScreen .mh{width:3px;height:38px;margin-left:-1.5px;background:var(--accent);animation:spin 3600s linear infinite}
+#welcomeScreen .sh{width:2px;height:42px;margin-left:-1px;background:var(--accent2);animation:spin 60s linear infinite}
+#welcomeScreen .dot{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px;border-radius:50%;background:var(--accent2)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+#welcomeScreen h1{font-size:clamp(24px,6.5vw,32px);line-height:1.2;font-weight:800;margin-bottom:6px}
+#welcomeScreen h1 span{background:linear-gradient(90deg,var(--accent),#8affc1);-webkit-background-clip:text;background-clip:text;color:transparent}
+#welcomeScreen .chapter{color:var(--accent2);font-weight:600;font-size:15px;margin-bottom:6px}
+#welcomeScreen .sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+
+/* motion track */
+#welcomeScreen .track{position:relative;height:46px;margin:0 4px 20px;border-bottom:2px dashed rgba(45,226,230,.4)}
+#welcomeScreen .car{position:absolute;bottom:2px;left:0;font-size:28px;animation:drive 4.5s ease-in-out infinite alternate}
+@keyframes drive{from{left:0}to{left:calc(100% - 34px)}}
+#welcomeScreen .marks{position:absolute;left:0;right:0;bottom:-18px;display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}
+
+#welcomeScreen .topics{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
+#welcomeScreen .topics span{font-size:12px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--border);color:var(--text)}
+
+#welcomeScreen .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+#welcomeScreen .stat{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:16px;padding:12px 6px}
+#welcomeScreen .stat b{display:block;font-size:22px;color:var(--accent)}
+#welcomeScreen .stat small{font-size:12px;color:var(--muted)}
+
+#welcomeScreen .field{text-align:left;margin-bottom:18px}
+#welcomeScreen .field label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+#welcomeScreen .field input{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.07);
+  color:var(--text);font-size:16px;outline:none;transition:.2s}
+#welcomeScreen .field input::placeholder{color:#6f98ab}
+#welcomeScreen .field input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(45,226,230,.18)}
+
+#welcomeScreen .start{width:100%;padding:16px;border:none;border-radius:16px;cursor:pointer;font-size:18px;font-weight:700;color:#032433;
+  background:linear-gradient(90deg,var(--accent),#8affc1);box-shadow:0 12px 30px rgba(45,226,230,.35);
+  transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+#welcomeScreen .start:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(45,226,230,.5)}
+#welcomeScreen .start:active{transform:scale(.98)}
+#welcomeScreen .start::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:shine 3s infinite}
+@keyframes shine{to{left:160%}}
+
+#welcomeScreen .rules{margin-top:18px;font-size:13px;color:var(--muted);display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+#welcomeScreen .rules span::before{content:"✔ ";color:var(--ok)}
+#welcomeScreen .toast{margin-top:14px;font-size:14px;color:var(--ok);min-height:20px}
+
+/* =========================================================
+   SCHOOL INTRO STYLES (all scoped under #intro)
+   ========================================================= */
+#intro{--terra:#B5472B;--deep:#6E2A18;--sand:#F6E3CC;--sun:#F2A93B;--road:#4A3A33;--navy:#26334D;--skin:#E2A57A;
+  font-family:'Baloo 2',system-ui,sans-serif;background:var(--deep)}
+#intro,#intro *{box-sizing:border-box;margin:0;padding:0}
+#intro{position:fixed;inset:0;overflow:hidden;z-index:60}
+/* ---------- start card ---------- */
+#start{position:absolute;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;background:linear-gradient(#FBD9B5,#F3A97B);text-align:center}
+#start h1{font-size:clamp(34px,8vw,56px);color:var(--deep);line-height:1.1;margin:0}
+#start p{font-size:22px;color:var(--deep)}
+#nm{width:min(420px,90vw);font:700 28px 'Baloo 2',sans-serif;padding:12px 18px;border-radius:14px;border:3px solid var(--terra);background:#FFF8EF;color:var(--deep);text-align:center;outline:none}
+#nm:focus{box-shadow:0 0 0 4px rgba(181,71,43,.3)}
+#go{font:800 28px 'Baloo 2',sans-serif;padding:12px 40px;border:0;border-radius:40px;background:var(--terra);color:#fff;cursor:pointer;box-shadow:0 6px 0 var(--deep)}
+#go:active{transform:translateY(4px);box-shadow:0 2px 0 var(--deep)}
+#err{color:#9B1C1C;font-size:20px;min-height:26px}
+/* ---------- scene ---------- */
+#scene{position:absolute;inset:0;transform-origin:50% 70%;transition:transform 1.8s cubic-bezier(.6,0,.3,1)}
+#sky{position:absolute;inset:0;background:linear-gradient(#FBD9B5 0%,#F8C195 55%,#F3A97B 100%)}
+#sunb{position:absolute;top:9vh;right:12vw;width:min(90px,18vw);aspect-ratio:1;border-radius:50%;background:var(--sun);box-shadow:0 0 0 14px rgba(242,169,59,.28),0 0 0 32px rgba(242,169,59,.14)}
+.layer{position:absolute;left:0;bottom:0;width:200%;height:100%;display:flex;will-change:transform}
+.layer>div{position:relative;width:50%;height:100%}
+.run{animation:scroll linear infinite}
+@keyframes scroll{to{transform:translateX(-50%)}}
+#clouds{animation-duration:90s}#far{animation-duration:42s}#mid{animation-duration:20s}
+.cl{position:absolute;height:5vh;border-radius:50px;background:rgba(255,248,239,.8)}
+.cl:before{content:"";position:absolute;left:20%;top:-60%;width:45%;height:150%;border-radius:50%;background:inherit}
+.bd{position:absolute;bottom:26vh;background:#D9946F;border-radius:4px 4px 0 0}
+.bd i{position:absolute;width:14%;height:9%;background:#F6E3CC;opacity:.75;border-radius:2px}
+.tr{position:absolute;bottom:26vh;width:6vh}
+.tr:before{content:"";position:absolute;bottom:0;left:42%;width:16%;height:9vh;background:#6B3E26}
+.tr:after{content:"";position:absolute;bottom:6vh;left:0;width:100%;height:12vh;border-radius:50%;background:#8A9A4B}
+#ground{position:absolute;left:0;right:0;bottom:0;height:27vh;background:#C9895F}
+#walk{position:absolute;left:0;right:0;bottom:19.5vh;height:2vh;background:#E7C7A3}
+#road{position:absolute;left:0;right:0;bottom:0;height:19.5vh;background:var(--road)}
+#dash{position:absolute;left:0;right:0;bottom:8vh;height:1.2vh;background:repeating-linear-gradient(90deg,#F6E3CC 0 60px,transparent 60px 130px);animation:dash .55s linear infinite}
+@keyframes dash{to{background-position:-130px 0}}
+.paused{animation-play-state:paused!important}
+/* ---------- school ---------- */
+#school{position:absolute;bottom:21.5vh;left:100%;width:min(76vw,460px);transition:transform 3.2s cubic-bezier(.2,.7,.2,1)}
+#school.in{transform:translateX(calc(-100% - 5vw))}
+#school svg{display:block;width:100%;height:auto}
+#doorL,#doorR{transition:transform 1s ease-in-out}
+#doorL{transform-origin:178px 0}#doorR{transform-origin:222px 0}
+#school.open #doorL{transform:scaleX(.12)}#school.open #doorR{transform:scaleX(.12)}
+/* ---------- kid ---------- */
+#kid{position:absolute;bottom:20vh;left:14vw;width:min(18vh,110px);aspect-ratio:1/2;transition:left 3.4s linear,opacity .7s,transform .7s;z-index:5}
+#kid svg{width:100%;height:100%;overflow:visible}
+#kid.gone{opacity:0;transform:scale(.75)}
+.body{animation:bob .45s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-3px)}}
+.legA,.legB{transform-origin:50px 104px}
+.legA{animation:leg .9s ease-in-out infinite}.legB{animation:leg .9s ease-in-out infinite -.45s}
+.shinA,.shinB{transform-origin:50px 144px}
+.shinA{animation:shin .9s ease-in-out infinite}.shinB{animation:shin .9s ease-in-out infinite -.45s}
+.armA,.armB{transform-origin:50px 56px}
+.armA{animation:arm .9s ease-in-out infinite}.armB{animation:arm .9s ease-in-out infinite -.45s}
+.foreA,.foreB{transform-origin:50px 80px;transform:rotate(-18deg)}
+@keyframes leg{0%,100%{transform:rotate(-26deg)}50%{transform:rotate(26deg)}}
+@keyframes shin{0%,50%{transform:rotate(4deg)}75%{transform:rotate(48deg)}100%{transform:rotate(4deg)}}
+@keyframes arm{0%,100%{transform:rotate(24deg)}50%{transform:rotate(-24deg)}}
+.still *{animation-play-state:paused!important}
+.blink{animation:blink 3.5s infinite;transform-origin:59px 28px}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+/* ---------- captions / luck ---------- */
+#sub{position:absolute;left:50%;bottom:4vh;transform:translateX(-50%);z-index:20;max-width:92vw;padding:10px 22px;border-radius:16px;background:rgba(110,42,24,.88);color:#FFF3E3;font-size:clamp(22px,5vw,30px);font-weight:700;text-align:center;line-height:1.25;opacity:0;transition:opacity .4s}
+#sub.on{opacity:1}
+#ask{position:absolute;left:50%;bottom:1.5vh;transform:translateX(-50%);z-index:21;width:min(92vw,420px);padding:10px 14px 12px;border-radius:16px;background:rgba(110,42,24,.94);color:#FFF3E3;text-align:center;display:none}
+#ask p{font-size:clamp(18px,4.8vw,22px);font-weight:800;line-height:1.2;margin-bottom:8px}
+#ask small{display:block;font-size:16px;margin-bottom:6px;color:#FFD9A0}
+#ask small:empty{display:none}
+#ask .bt{display:flex;gap:12px;justify-content:center}
+#ask button{flex:1;max-width:130px;font:800 20px 'Baloo 2',sans-serif;line-height:1.2;padding:4px 0;border:0;border-radius:30px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.35)}
+#ask button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+#yes{background:#8A9A4B;color:#fff}#no{background:#FFF3E3;color:var(--deep)}
+#luck{position:absolute;inset:0;z-index:25;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;background:var(--terra);color:#FFF3E3;opacity:0;pointer-events:none;transition:opacity .8s}
+#luck.on{opacity:1}
+#luck b{font-size:clamp(40px,11vw,84px);line-height:1.05;transform:scale(.7);transition:transform .8s cubic-bezier(.2,1.4,.4,1)}
+#luck.on b{transform:scale(1)}
+#luck span{font-size:clamp(26px,6vw,40px)}
+#skip{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;z-index:40;display:none;font:700 20px 'Baloo 2',sans-serif;padding:6px 18px;border-radius:30px;border:2px solid var(--deep);background:rgba(255,248,239,.85);color:var(--deep);cursor:pointer}
+#intro.fadeout{opacity:0;transition:opacity .7s;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.layer.run{animation-duration:200s}}
+</style>
+</head>
+
+<body class="intro-active">
+
+<!-- Mute button, popup, confetti -->
+<button id="muteBtn" class="mute-btn" aria-label="Sound on or off">🔊</button>
+<div id="popup" class="popup"></div>
+<canvas id="confetti"></canvas>
+
+<!-- Background glows for the test -->
+<div class="bg-glow bg1"></div>
+<div class="bg-glow bg2"></div>
+
+<!-- =========================================================
+     WELCOME SCREEN
+     ========================================================= -->
+<div id="welcomeScreen">
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <main class="wrap">
+    <section class="card">
+      <div class="badge">Science Test</div>
+
+      <div class="clock" aria-hidden="true">
+        <div class="hand hh"></div><div class="hand mh"></div><div class="hand sh"></div><div class="dot"></div>
+        <div class="tick" style="transform:translate(-1px,-55px)"></div>
+        <div class="tick" style="transform:translate(50px,-1px) rotate(90deg)"></div>
+        <div class="tick" style="transform:translate(-1px,47px)"></div>
+        <div class="tick" style="transform:translate(-57px,-1px) rotate(90deg)"></div>
+      </div>
+
+      <h1>Measurement of <span>Time &amp; Motion</span></h1>
+      <p class="chapter">Chapter Test • Science</p>
+      <p class="sub">Speed, time, distance and motion — test how well you know them!</p>
+
+      <div class="track" aria-hidden="true">
+        <div class="car">🚗</div>
+        <div class="marks"><span>0 m</span><span>50 m</span><span>100 m</span></div>
+      </div>
+
+      <div class="topics">
+        <span>⏱ Speed = Distance ÷ Time</span>
+        <span>🔁 Periodic Motion</span>
+        <span>🕰 Simple Pendulum</span>
+        <span>📈 Distance–Time Graph</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>45</b><small>Questions</small></div>
+        <div class="stat"><b>30–45</b><small>Sec / Question</small></div>
+        <div class="stat"><b>45</b><small>Marks</small></div>
+      </div>
+
+      <div class="field">
+        <label for="name">Student Name</label>
+        <input id="name" type="text" placeholder="Enter your name" autocomplete="off" maxlength="40">
+      </div>
+
+      <button class="start" id="startBtn">Start Test →</button>
+
+      <div class="toast" id="toast"></div>
+
+      <div class="rules">
+        <span>No negative marking</span>
+        <span>Instant result</span>
+        <span>Best of luck!</span>
+      </div>
+    </section>
+  </main>
+</div>
+
+
+<!-- =========================================================
+     MAIN TEST
+     ========================================================= -->
+<div class="app hidden" id="appWrap">
+  <div class="student-banner" id="studentBanner"></div>
+  <div id="screen" class="card fade"></div>
+  <div class="footer">Made by Parth</div>
+</div>
+
+
+<!-- =========================================================
+     SCHOOL INTRO (plays first, then the welcome screen)
+     ========================================================= -->
+<div id="intro">
+  <div id="start">
+    <h1>टेस्ट के लिए तैयार?</h1>
+    <p>अपना नाम लिखो और शुरू करो</p>
+    <input id="nm" type="text" maxlength="24" placeholder="Your Name" autocomplete="off">
+    <div id="err"></div>
+    <button id="go">Start ▶</button>
+  </div>
+
+  <button id="skip">Skip ⏭</button>
+
+  <div id="scene">
+    <div id="sky"></div><div id="sunb"></div>
+    <div class="layer run" id="clouds"><div id="c1"></div><div id="c2"></div></div>
+    <div class="layer run" id="far"><div id="f1"></div><div id="f2"></div></div>
+    <div class="layer run" id="mid"><div id="m1"></div><div id="m2"></div></div>
+    <div id="ground"></div><div id="walk"></div><div id="road"><div id="dash"></div></div>
+
+    <!-- school -->
+    <div id="school">
+      <svg viewBox="0 0 400 260" aria-hidden="true">
+        <rect x="20" y="70" width="360" height="190" fill="#E9B98E"/>
+        <rect x="150" y="20" width="100" height="70" fill="#B5472B"/>
+        <polygon points="140,24 200,-6 260,24" fill="#6E2A18"/>
+        <circle cx="200" cy="52" r="15" fill="#FFF3E3" stroke="#6E2A18" stroke-width="4"/>
+        <path d="M200 52v-9M200 52l6 4" stroke="#6E2A18" stroke-width="3" fill="none"/>
+        <polygon points="10,76 200,50 390,76 390,90 10,90" fill="#B5472B" opacity="0"/>
+        <rect x="10" y="64" width="380" height="12" fill="#6E2A18"/>
+        <g fill="#FFF3E3" stroke="#6E2A18" stroke-width="4">
+          <rect x="50" y="105" width="60" height="55"/><rect x="290" y="105" width="60" height="55"/>
+          <rect x="50" y="185" width="60" height="50"/><rect x="290" y="185" width="60" height="50"/>
+        </g>
+        <path d="M80 105v55M50 132h60M320 105v55M290 132h60M80 185v50M50 210h60M320 185v50M290 210h60" stroke="#6E2A18" stroke-width="3"/>
+        <rect x="160" y="150" width="80" height="110" fill="#3A1D12"/>
+        <rect id="inside" x="160" y="150" width="80" height="110" fill="#FFD9A0"/>
+        <g id="doorL"><rect x="158" y="150" width="42" height="110" fill="#B5472B" stroke="#6E2A18" stroke-width="3"/><circle cx="192" cy="208" r="3" fill="#FFF3E3"/></g>
+        <g id="doorR"><rect x="200" y="150" width="42" height="110" fill="#B5472B" stroke="#6E2A18" stroke-width="3"/><circle cx="208" cy="208" r="3" fill="#FFF3E3"/></g>
+        <rect x="140" y="122" width="120" height="22" rx="4" fill="#6E2A18"/>
+        <text x="200" y="139" font-size="15" font-weight="800" text-anchor="middle" fill="#FFF3E3" font-family="Baloo 2, sans-serif">MY SCHOOL</text>
+      </svg>
+    </div>
+
+    <!-- kid (boy, facing right) -->
+    <div id="kid">
+      <svg viewBox="0 0 100 200" aria-hidden="true">
+        <ellipse cx="50" cy="194" rx="26" ry="4" fill="rgba(0,0,0,.22)"/>
+        <g class="body">
+          <!-- back arm -->
+          <g class="armB">
+            <path d="M50 56 L47 80" stroke="#F6E3CC" stroke-width="9" stroke-linecap="round"/>
+            <g class="foreB"><path d="M47 80 L47 102" stroke="var(--skin)" stroke-width="7" stroke-linecap="round"/><circle cx="47" cy="104" r="5" fill="var(--skin)"/></g>
+          </g>
+          <!-- back leg -->
+          <g class="legB">
+            <path d="M50 104 L50 144" stroke="#1D2740" stroke-width="13" stroke-linecap="round"/>
+            <g class="shinB"><path d="M50 144 L50 180" stroke="#1D2740" stroke-width="11" stroke-linecap="round"/><path d="M45 178 h16 q5 0 5 6 v4 h-22z" fill="#2B1A12"/><rect x="43" y="186" width="24" height="4" rx="2" fill="#FFF3E3"/></g>
+          </g>
+          <!-- backpack -->
+          <rect x="22" y="52" width="22" height="50" rx="9" fill="#B5472B"/>
+          <rect x="25" y="82" width="16" height="14" rx="4" fill="#8E3420"/>
+          <rect x="22" y="52" width="22" height="50" rx="9" fill="none" stroke="#6E2A18" stroke-width="2"/>
+          <!-- torso -->
+          <path d="M39 52 Q50 46 61 52 L63 106 H37z" fill="#FFF3E3" stroke="#D9C2A6" stroke-width="1.5"/>
+          <path d="M37 98 H63 L63 108 H37z" fill="#26334D"/>
+          <path d="M50 52 L47 60 L50 66 L53 60z" fill="#B5472B"/><path d="M48 66 L50 84 L52 66z" fill="#B5472B"/>
+          <path d="M39 56 Q44 62 50 52 Q56 62 61 56" stroke="#D9C2A6" stroke-width="2" fill="none"/>
+          <path d="M42 54 Q40 76 42 92" stroke="#7A2E1A" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- neck + head -->
+          <rect x="45" y="40" width="10" height="13" rx="4" fill="#D18F65"/>
+          <path d="M45 46 Q50 50 55 46 V50 H45z" fill="#BE7B52" opacity=".55"/>
+          <path d="M33 25 Q33 7 50 7 Q68 7 68 25 Q68 33 64.5 39 Q58 47 50 47 Q40 47 35.5 38.5 Q33 32 33 25z" fill="var(--skin)"/>
+          <ellipse cx="38.5" cy="30" rx="4" ry="5.2" fill="#D9966B"/><path d="M38 27.5 Q41 30 38.5 33" stroke="#B87650" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <path d="M67.5 27 Q73 32 68.5 35.5 Q66.5 36.5 65 35" fill="#E2A57A" stroke="#C8805A" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M30.5 28 Q25 5 50 4 Q76 4 70 24 Q67 13 55 13.5 Q49 19 39 19 Q34.5 21 34 30z" fill="#231510"/>
+          <path d="M42 6.5 Q48 0.5 58 5.5" stroke="#231510" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M45 8 Q53 6 60 10" stroke="#5A4033" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <path d="M52 21 Q58.5 16.8 65 20.5" stroke="#231510" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <g class="blink">
+            <ellipse cx="59" cy="28" rx="4.4" ry="5" fill="#fff"/>
+            <circle cx="60" cy="28.5" r="3.2" fill="#5B3A29"/><circle cx="60.2" cy="28.6" r="1.7" fill="#1A0F0A"/>
+            <circle cx="61.3" cy="27" r="1.1" fill="#fff"/><circle cx="58.8" cy="30.2" r=".6" fill="#fff" opacity=".8"/>
+            <path d="M54.6 26.5 Q59 22.2 63.6 26.2" stroke="#231510" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M63.2 25.6 l2 -1.6" stroke="#231510" stroke-width="1.3" stroke-linecap="round"/>
+          </g>
+          <circle cx="55" cy="36" r="3.8" fill="#EE8E7A" opacity=".5"/>
+          <path d="M55.5 38.2 Q61.5 46 67.5 37.5 Z" fill="#8A2F26"/>
+          <path d="M57.3 38.6 Q61.5 41 66 38.2 L65.2 40 Q61.5 42.2 58.2 40.3z" fill="#fff"/>
+          <path d="M55.5 38.2 Q61.5 46 67.5 37.5" stroke="#6E2A18" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+          <!-- front leg -->
+          <g class="legA">
+            <path d="M50 104 L50 144" stroke="#26334D" stroke-width="13" stroke-linecap="round"/>
+            <g class="shinA"><path d="M50 144 L50 180" stroke="#26334D" stroke-width="11" stroke-linecap="round"/><path d="M45 178 h16 q5 0 5 6 v4 h-22z" fill="#3A241A"/><rect x="43" y="186" width="24" height="4" rx="2" fill="#FFF3E3"/></g>
+          </g>
+          <!-- front arm + strap -->
+          <g class="armA">
+            <path d="M50 56 L47 80" stroke="#FFF3E3" stroke-width="10" stroke-linecap="round"/>
+            <g class="foreA"><path d="M47 80 L47 102" stroke="var(--skin)" stroke-width="8" stroke-linecap="round"/><circle cx="47" cy="104" r="5.5" fill="var(--skin)"/></g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div id="ask">
+    <p>क्या आप टेस्ट के लिए तैयार हो जनाब?</p>
+    <small id="asknote"></small>
+    <div class="bt"><button id="yes">Yes ✅</button><button id="no">No ❌</button></div>
+  </div>
+  <div id="sub"></div>
+  <div id="luck"><b id="lk1"></b><span>🍀 Best of Luck 🍀</span></div>
+</div>
+
+<script>
+
+/* =========================================================
+   QUESTION BANK
+   ========================================================= */
+
+const AR_OPTIONS=[
+  "Both A and R are true, and R is the correct explanation of A.",
+  "Both A and R are true, but R is not the correct explanation of A.",
+  "A is true, but R is false.",
+  "A is false, but R is true."
+];
+
+const QUESTIONS = {
+
+  mcq:[
+    {
+      q:"A day was defined by the cycle of the:",
+      options:["Phases of the Moon","Rising and setting of the Sun","Changing seasons","Flow of sand"],
+      answer:1,
+      explanation:"A day was defined by the rising and setting of the Sun."
+    },
+    {
+      q:"In a sundial, time is determined by:",
+      options:["Flow of water","Flow of sand","The changing position of a shadow","Burning of a candle"],
+      answer:2,
+      explanation:"A sundial shows time through the changing position of a shadow."
+    },
+    {
+      q:"In an hourglass, time is measured on the basis of the flow of:",
+      options:["Water","Sand","Air","Oil"],
+      answer:1,
+      explanation:"An hourglass measures time by the flow of sand."
+    },
+    {
+      q:"The Samrat Yantra, the world's largest stone sundial, is in:",
+      options:["Delhi","Jaipur","Jodhpur","Udaipur"],
+      answer:1,
+      explanation:"The Samrat Yantra, the world's largest stone sundial, is in Jaipur."
+    },
+    {
+      q:"The earliest reference to shadow-based time measurement in ancient India appears in the:",
+      options:["Arthasastra","Rigveda","Ramayana","Mahabharata"],
+      answer:0,
+      explanation:"The earliest reference to shadow-based time measurement in ancient India is in the Arthasastra."
+    },
+    {
+      q:"Who first mentioned the Ghatika-yantra?",
+      options:["Kautilya","Varahamihira","Aryabhata","Galileo"],
+      answer:2,
+      explanation:"Aryabhata was the first to mention the Ghatika-yantra."
+    },
+    {
+      q:"The pendulum clock was invented by:",
+      options:["Galileo Galilei","Christiaan Huygens","Kautilya","Aryabhata"],
+      answer:1,
+      explanation:"The pendulum clock was invented by Christiaan Huygens."
+    },
+    {
+      q:"In a simple pendulum, the small metallic ball is called the:",
+      options:["Support","Bob","Thread","Scale"],
+      answer:1,
+      explanation:"The small metallic ball of a simple pendulum is called the bob."
+    },
+    {
+      q:"The time taken by a pendulum to complete one oscillation is called its:",
+      options:["Time period","Speed","Distance","Mean position"],
+      answer:0,
+      explanation:"The time taken to complete one oscillation is the time period of the pendulum."
+    },
+    {
+      q:"The smallest interval of time we can measure with the wall clock in Fig. 8.9 is:",
+      options:["One minute","One second","One millisecond","One hour"],
+      answer:1,
+      explanation:"A wall clock can measure a smallest interval of one second."
+    },
+    {
+      q:"The SI unit of time is the:",
+      options:["Minute","Hour","Second","Millisecond"],
+      answer:2,
+      explanation:"The second is the SI unit of time."
+    },
+    {
+      q:"60 min is equal to:",
+      options:["1 s","1 h","1 day","60 h"],
+      answer:1,
+      explanation:"60 minutes make 1 hour."
+    },
+    {
+      q:"The speedometer of a vehicle measures:",
+      options:["Distance travelled","Speed of the vehicle","Time","Mass"],
+      answer:1,
+      explanation:"A speedometer shows the speed of the vehicle."
+    },
+    {
+      q:"When an object moves along a straight line, its motion is called:",
+      options:["Circular motion","Oscillatory motion","Linear motion","Periodic motion"],
+      answer:2,
+      explanation:"Motion along a straight line is called linear motion."
+    },
+    {
+      q:"In Fig. 8.11, the train moves at a constant speed between:",
+      options:["A and B","B and C","C and D","A and D"],
+      answer:1,
+      explanation:"The train moves at a constant speed between B and C."
+    }
+  ],
+
+  assert:[
+    {
+      q:"Assertion: The motion of a pendulum is periodic.<br><br>Reason: It repeats its path after a fixed interval of time.",
+      options:AR_OPTIONS,
+      answer:0,
+      explanation:"Both are true, and repeating its path after a fixed interval is exactly what makes the motion periodic."
+    },
+    {
+      q:"Assertion: Water clocks were very accurate.<br><br>Reason: As the water level dropped, the flow rate decreased.",
+      options:AR_OPTIONS,
+      answer:3,
+      explanation:"The assertion is false. Because the flow rate decreased as the water level dropped, water clocks were not very accurate. The reason is true."
+    },
+    {
+      q:"Assertion: All clocks, old or modern, are based on some repeating process.<br><br>Reason: A repeating process can be used to mark equal intervals of time.",
+      options:AR_OPTIONS,
+      answer:0,
+      explanation:"Both are true, and equal intervals from a repeating process are why clocks are based on it."
+    },
+    {
+      q:"Assertion: All pendulums of the same length have the same time period at a given location.<br><br>Reason: The time period of a simple pendulum depends on its length but not on the bob's mass.",
+      options:AR_OPTIONS,
+      answer:0,
+      explanation:"Both are true. Time period depends on length, not on mass, so equal-length pendulums have the same time period."
+    },
+    {
+      q:"Assertion: Digital recordings give smooth playback.<br><br>Reason: They capture sound thousands of times per second.",
+      options:AR_OPTIONS,
+      answer:0,
+      explanation:"Both are true, and capturing sound thousands of times per second gives smooth playback."
+    },
+    {
+      q:"Assertion: Train Y is in non-uniform linear motion between 10:00 and 11:00 AM.<br><br>Reason: Train Y covered a total of 120 km between 10:00 and 11:00 AM.",
+      options:AR_OPTIONS,
+      answer:1,
+      explanation:"Both are true, but the total distance covered does not explain why the motion is non-uniform."
+    },
+    {
+      q:"Assertion: Smartphones and computers can operate very fast.<br><br>Reason: They process signals in microseconds.",
+      options:AR_OPTIONS,
+      answer:0,
+      explanation:"Both are true, and processing signals in microseconds is why they operate so fast."
+    },
+    {
+      q:"Assertion: A 24-hour day was divided into 24 equal ghatis.<br><br>Reason: The bowl of the Ghatika-yantra took 24 minutes to fill and sink.",
+      options:AR_OPTIONS,
+      answer:3,
+      explanation:"The assertion is false because a day was divided into 60 ghatis, not 24. The reason is true."
+    },
+    {
+      q:"Assertion: The symbol for hour is 'h'.<br><br>Reason: Symbols of units of time are written in plural form, such as 'hrs'.",
+      options:AR_OPTIONS,
+      answer:2,
+      explanation:"The assertion is true. The reason is false because unit symbols are not written in plural form."
+    },
+    {
+      q:"Assertion: The Ghatika-yantra continued to be used at religious places for rituals.<br><br>Reason: Pendulum clocks progressively replaced it in the late nineteenth century.",
+      options:AR_OPTIONS,
+      answer:1,
+      explanation:"Both are true, but the replacement by pendulum clocks does not explain its continued ritual use."
+    }
+  ],
+
+  one:[
+    {
+      q:"What kind of motion does a pendulum bob show when released?",
+      answers:["oscillatory"],
+      answer:"Oscillatory",
+      explanation:"A released pendulum bob moves to and fro, which is oscillatory motion."
+    },
+    {
+      q:"Which instrument in a vehicle measures the distance travelled in km?",
+      answers:["odometer"],
+      answer:"Odometer",
+      explanation:"The odometer measures the distance travelled by a vehicle."
+    },
+    {
+      q:"Which crystal is used in some modern clocks for tiny, rapid vibrations?",
+      answers:["quartz"],
+      answer:"Quartz",
+      explanation:"Quartz crystals vibrate rapidly and are used in modern clocks."
+    },
+    {
+      q:"What is one-thousandth of a second called?",
+      answers:["millisecond"],
+      answer:"Millisecond",
+      explanation:"One-thousandth of a second is a millisecond."
+    },
+    {
+      q:"Which type of speeds do we use because uniform motion is rare in everyday life?",
+      answers:["average"],
+      answer:"Average",
+      explanation:"Uniform motion is rare, so we use average speeds."
+    },
+    {
+      q:"Which machine measures millisecond variations in heartbeats?",
+      answers:["ecg"],
+      answer:"ECG",
+      explanation:"An ECG measures millisecond variations in heartbeats."
+    },
+    {
+      q:"Which floating vessel with a fine hole was used in one type of water clock?",
+      answers:["bowl"],
+      answer:"Bowl",
+      explanation:"A floating bowl with a fine hole was used in one type of water clock."
+    },
+    {
+      q:"What is the motion called when the speed of an object moving in a straight line keeps changing?",
+      answers:["non-uniform","non uniform","nonuniform"],
+      answer:"Non-uniform",
+      explanation:"When speed keeps changing along a straight line, the motion is non-uniform."
+    },
+    {
+      q:"Which clocks lose only one second in millions of years?",
+      answers:["atomic"],
+      answer:"Atomic",
+      explanation:"Atomic clocks are extremely accurate and lose only one second in millions of years."
+    },
+    {
+      q:"Which type of time does a sundial measure?",
+      answers:["solar"],
+      answer:"Solar",
+      explanation:"A sundial measures solar time, based on the Sun's position."
+    }
+  ],
+
+  fill:[
+    {
+      q:"The rising and setting of the Sun, the phases of the ________ and the changing seasons were used for timekeeping.",
+      answers:["moon"],
+      answer:"Moon",
+      explanation:"The Sun, the phases of the Moon and the seasons were used for timekeeping."
+    },
+    {
+      q:"In a candle clock, markings show the passage of time when the candle is ________.",
+      answers:["burned","burnt"],
+      answer:"burned",
+      explanation:"The markings on a candle clock show time as the candle burns."
+    },
+    {
+      q:"The shadow of the Samrat Yantra moves at about ________ millimetre per second.",
+      answers:["1","one"],
+      answer:"1",
+      explanation:"The shadow of the Samrat Yantra moves at about 1 millimetre per second."
+    },
+    {
+      q:"Varahamihira gave an expression for time using the shadow of a vertical stick around ________ CE.",
+      answers:["530"],
+      answer:"530",
+      explanation:"Varahamihira gave this expression around 530 CE."
+    },
+    {
+      q:"Each time the bowl of the Ghatika-yantra sank, it was announced by drums, conch shells or a ________.",
+      answers:["gong"],
+      answer:"gong",
+      explanation:"The sinking of the bowl was announced by drums, conch shells or a gong."
+    },
+    {
+      q:"From the ________ century onwards, mechanical devices driven by weights, gears and springs were developed.",
+      answers:["fourteenth","14th","14"],
+      answer:"fourteenth",
+      explanation:"Mechanical devices with weights, gears and springs were developed from the fourteenth century onwards."
+    },
+    {
+      q:"Galileo used his ________ to measure the time of each swing of the lamp.",
+      answers:["pulse"],
+      answer:"pulse",
+      explanation:"Galileo used his pulse to measure the time of each swing."
+    },
+    {
+      q:"A pendulum completes one oscillation when its bob moves from O to A, then to B and back to ________.",
+      answers:["o"],
+      answer:"O",
+      explanation:"One oscillation is complete when the bob moves O to A, then to B, and back to O."
+    },
+    {
+      q:"In sports, timekeeping devices record time to determine the ________ in a race.",
+      answers:["winners","winner"],
+      answer:"winners",
+      explanation:"Timekeeping devices in sports are used to determine the winners of a race."
+    },
+    {
+      q:"An object in uniform linear motion covers ________ distances in equal intervals of time.",
+      answers:["equal"],
+      answer:"equal",
+      explanation:"In uniform linear motion, equal distances are covered in equal intervals of time."
+    }
+  ]
+};
+
+
+/* =========================================================
+   SECTION INFORMATION
+   ========================================================= */
+
+const SECTION_INFO={
+  mcq:{
+    title:"MCQ",
+    time:30,
+    icon:"🧪",
+    color:"#2de2e6"
+  },
+  assert:{
+    title:"Assertion & Reasoning",
+    time:30,
+    icon:"⚖️",
+    color:"#ff9f1c"
+  },
+  one:{
+    title:"One Word",
+    time:45,
+    icon:"✍️",
+    color:"#7CFC9a"
+  },
+  fill:{
+    title:"Fill in the Blanks",
+    time:45,
+    icon:"📝",
+    color:"#b58cff"
+  }
+};
+
+const SECTION_ORDER=["mcq","assert","one","fill"];
+const DEFAULT_COLOR="#2de2e6";
+const RING_C=163.36;
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+function makeAnswers(){
+  return {
+    mcq:Array(QUESTIONS.mcq.length).fill(null),
+    assert:Array(QUESTIONS.assert.length).fill(null),
+    one:Array(QUESTIONS.one.length).fill(""),
+    fill:Array(QUESTIONS.fill.length).fill("")
+  };
+}
+
+function makeRemaining(){
+  return {
+    mcq:Array(QUESTIONS.mcq.length).fill(SECTION_INFO.mcq.time),
+    assert:Array(QUESTIONS.assert.length).fill(SECTION_INFO.assert.time),
+    one:Array(QUESTIONS.one.length).fill(SECTION_INFO.one.time),
+    fill:Array(QUESTIONS.fill.length).fill(SECTION_INFO.fill.time)
+  };
+}
+
+function makeLocked(){
+  return {
+    mcq:Array(QUESTIONS.mcq.length).fill(false),
+    assert:Array(QUESTIONS.assert.length).fill(false),
+    one:Array(QUESTIONS.one.length).fill(false),
+    fill:Array(QUESTIONS.fill.length).fill(false)
+  };
+}
+
+const state={
+
+  name:"",
+
+  sec:"mcq",
+  idx:0,
+
+  answers:makeAnswers(),
+  remaining:makeRemaining(),
+  locked:makeLocked(),
+
+  /*
+    Furthest only increases through normal sequential Next.
+    Direct jumps never increase it.
+  */
+  furthest:{
+    mcq:0,
+    assert:0,
+    one:0,
+    fill:0
+  },
+
+  timer:null,
+  startedAt:null,
+
+  revisionUsed:false,
+
+  revision:{
+    sec:"mcq",
+    idx:0,
+    remaining:120,
+    timer:null,
+    startedAt:null
+  },
+
+  scores:null,
+  celebrated:false
+};
+
+const screen=document.getElementById("screen");
+const welcomeScreen=document.getElementById("welcomeScreen");
+const appWrap=document.getElementById("appWrap");
+
+
+/* =========================================================
+   SOUND EFFECTS (Web Audio, no files needed)
+   ========================================================= */
+
+let audioCtx=null;
+let muted=false;
+
+function getCtx(){
+
+  if(!audioCtx){
+
+    const AC=window.AudioContext||window.webkitAudioContext;
+
+    if(!AC){
+      return null;
+    }
+
+    audioCtx=new AC();
+  }
+
+  if(audioCtx.state==="suspended"){
+    audioCtx.resume();
+  }
+
+  return audioCtx;
+}
+
+function tone(freq,start,dur,type,vol,endFreq){
+
+  if(muted){
+    return;
+  }
+
+  const ctx=getCtx();
+
+  if(!ctx){
+    return;
+  }
+
+  const t=ctx.currentTime+start;
+  const osc=ctx.createOscillator();
+  const gain=ctx.createGain();
+
+  osc.type=type;
+  osc.frequency.setValueAtTime(freq,t);
+
+  if(endFreq){
+    osc.frequency.exponentialRampToValueAtTime(endFreq,t+dur);
+  }
+
+  gain.gain.setValueAtTime(0.0001,t);
+  gain.gain.exponentialRampToValueAtTime(vol,t+0.01);
+  gain.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start(t);
+  osc.stop(t+dur+0.05);
+}
+
+function playSound(name){
+
+  switch(name){
+
+    case "click":
+      tone(750,0,0.08,"square",0.3,480);
+      break;
+
+    case "pop":
+      tone(480,0,0.14,"sine",0.6,950);
+      break;
+
+    case "tick":
+      tone(1300,0,0.06,"square",0.35);
+      break;
+
+    case "buzzer":
+      tone(170,0,0.6,"sawtooth",0.55);
+      tone(160,0,0.6,"square",0.35);
+      break;
+
+    case "chime":
+      tone(660,0,0.3,"sine",0.6);
+      tone(880,0.15,0.3,"sine",0.6);
+      tone(1320,0.3,0.5,"sine",0.6);
+      break;
+
+    case "jingle":
+      tone(523,0,0.18,"triangle",0.65);
+      tone(659,0.16,0.18,"triangle",0.65);
+      tone(784,0.32,0.18,"triangle",0.65);
+      tone(1047,0.48,0.5,"triangle",0.7);
+      tone(784,0.8,0.16,"triangle",0.6);
+      tone(1047,0.96,0.6,"triangle",0.7);
+      break;
+
+    case "soft":
+      tone(440,0,0.4,"sine",0.45);
+      tone(330,0.25,0.6,"sine",0.45);
+      break;
+  }
+}
+
+document.addEventListener("click",function(e){
+
+  const b=e.target.closest("button");
+
+  if(
+    !b ||
+    b.id==="muteBtn" ||
+    b.classList.contains("option") ||
+    b.disabled
+  ){
+    return;
+  }
+
+  playSound("click");
+});
+
+document.getElementById("muteBtn").addEventListener("click",function(){
+
+  muted=!muted;
+
+  this.textContent=muted?"🔇":"🔊";
+
+  if(!muted){
+    playSound("click");
+  }
+});
+
+
+/* =========================================================
+   POPUP + CONFETTI
+   ========================================================= */
+
+let popupTimer=null;
+
+function showPopup(msg,type){
+
+  const p=document.getElementById("popup");
+
+  p.textContent=msg;
+  p.className="popup show "+(type||"ok");
+
+  clearTimeout(popupTimer);
+
+  popupTimer=setTimeout(()=>{
+    p.classList.remove("show");
+  },2600);
+}
+
+let confettiRaf=null;
+
+function stopConfetti(){
+
+  if(confettiRaf){
+    cancelAnimationFrame(confettiRaf);
+    confettiRaf=null;
+  }
+
+  const c=document.getElementById("confetti");
+
+  c.getContext("2d").clearRect(0,0,c.width,c.height);
+}
+
+function launchConfetti(){
+
+  stopConfetti();
+
+  const c=document.getElementById("confetti");
+  const ctx=c.getContext("2d");
+
+  c.width=window.innerWidth;
+  c.height=window.innerHeight;
+
+  const colors=["#2de2e6","#ff9f1c","#7CFC9a","#b58cff","#ff5d8f","#ffffff"];
+
+  const parts=Array.from({length:130},()=>({
+    x:Math.random()*c.width,
+    y:-20-Math.random()*c.height*0.5,
+    w:6+Math.random()*6,
+    h:8+Math.random()*8,
+    vx:-2+Math.random()*4,
+    vy:2+Math.random()*4,
+    rot:Math.random()*6.28,
+    vr:-0.2+Math.random()*0.4,
+    color:colors[Math.floor(Math.random()*colors.length)]
+  }));
+
+  const start=performance.now();
+
+  function frame(now){
+
+    ctx.clearRect(0,0,c.width,c.height);
+
+    parts.forEach(p=>{
+
+      p.x+=p.vx;
+      p.y+=p.vy;
+      p.rot+=p.vr;
+
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle=p.color;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+
+    if(now-start<4000){
+      confettiRaf=requestAnimationFrame(frame);
+    }else{
+      stopConfetti();
+    }
+  }
+
+  confettiRaf=requestAnimationFrame(frame);
+}
+
+
+/* =========================================================
+   WELCOME SCREEN LOGIC
+   ========================================================= */
+
+let startingTest=false;
+
+document.getElementById("startBtn").addEventListener("click",function(){
+
+  if(startingTest){
+    return;
+  }
+
+  const nameInput=document.getElementById("name");
+  const toast=document.getElementById("toast");
+  const n=nameInput.value.trim();
+
+  if(!n){
+    toast.textContent="Please enter your name first 🙂";
+    nameInput.focus();
+    return;
+  }
+
+  startingTest=true;
+  state.name=n;
+
+  toast.textContent=greet()+", "+n+"! Best of luck 🚀";
+
+  document.getElementById("studentBanner").textContent=
+    "👋 "+greet()+", "+n+"!";
+
+  setTimeout(function(){
+    welcomeScreen.classList.add("hidden");
+    appWrap.classList.remove("hidden");
+    startingTest=false;
+    showRules();
+  },700);
+});
+
+document.getElementById("name").addEventListener("keydown",function(e){
+  if(e.key==="Enter"){
+    document.getElementById("startBtn").click();
+  }
+});
+
+function showWelcome(){
+  stopConfetti();
+  document.getElementById("name").value="";
+  document.getElementById("toast").textContent="";
+  appWrap.classList.add("hidden");
+  welcomeScreen.classList.remove("hidden");
+  welcomeScreen.scrollTop=0;
+}
+
+
+/* =========================================================
+   GENERAL HELPERS
+   ========================================================= */
+
+function esc(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function greet(){
+  const hour=new Date().getHours();
+
+  if(hour<12) return "Good morning";
+  if(hour<17) return "Good afternoon";
+
+  return "Good evening";
+}
+
+function setScreen(html,color){
+  clearNormalTimer();
+  clearRevisionTimer();
+
+  screen.style.setProperty("--sec",color||DEFAULT_COLOR);
+  screen.className="card fade";
+  screen.innerHTML=html;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function sectionTotal(sec){
+  return QUESTIONS[sec].length;
+}
+
+function sectionTitle(sec){
+  return SECTION_INFO[sec].title;
+}
+
+function sectionIndex(sec){
+  return SECTION_ORDER.indexOf(sec);
+}
+
+function nextSection(sec){
+  return SECTION_ORDER[sectionIndex(sec)+1] || null;
+}
+
+function formatTime(seconds){
+  return `${Math.max(0,Math.ceil(seconds))}s`;
+}
+
+/* circular timer */
+
+function ringHTML(){
+  return `
+    <div class="ring" id="ring">
+      <svg viewBox="0 0 64 64">
+        <circle class="ring-bg" cx="32" cy="32" r="26"/>
+        <circle
+          id="ringFg"
+          class="ring-fg"
+          cx="32" cy="32" r="26"
+          stroke-dasharray="${RING_C}"
+          stroke-dashoffset="0"
+          transform="rotate(-90 32 32)"
+        />
+      </svg>
+      <span id="timerText"></span>
+    </div>
+  `;
+}
+
+function updateRing(left,total,text,low){
+
+  const ring=document.getElementById("ring");
+  const fg=document.getElementById("ringFg");
+  const label=document.getElementById("timerText");
+
+  if(!ring || !fg || !label){
+    return;
+  }
+
+  const frac=Math.max(0,Math.min(1,left/total));
+
+  fg.style.strokeDashoffset=RING_C*(1-frac);
+  label.textContent=text;
+
+  ring.classList.toggle("low",low);
+  screen.classList.toggle("danger",low);
+}
+
+
+/* =========================================================
+   RULES
+   ========================================================= */
+
+function showRules(){
+
+  setScreen(`
+    <h2>Test Rules & Instructions</h2>
+
+    <p class="muted">
+      Please read the instructions carefully before starting.
+    </p>
+
+    <div class="section-grid">
+
+      <div class="section-box" style="--sec:${SECTION_INFO.mcq.color}">
+        <strong>${SECTION_INFO.mcq.icon} MCQ</strong>
+        ${sectionTotal("mcq")} questions · 1 mark each<br>
+        ${SECTION_INFO.mcq.time} seconds per question
+      </div>
+
+      <div class="section-box" style="--sec:${SECTION_INFO.assert.color}">
+        <strong>${SECTION_INFO.assert.icon} Assertion & Reasoning</strong>
+        ${sectionTotal("assert")} questions · 1 mark each<br>
+        ${SECTION_INFO.assert.time} seconds per question
+      </div>
+
+      <div class="section-box" style="--sec:${SECTION_INFO.one.color}">
+        <strong>${SECTION_INFO.one.icon} One Word</strong>
+        ${sectionTotal("one")} questions · 1 mark each<br>
+        ${SECTION_INFO.one.time} seconds per question
+      </div>
+
+      <div class="section-box" style="--sec:${SECTION_INFO.fill.color}">
+        <strong>${SECTION_INFO.fill.icon} Fill in the Blanks</strong>
+        ${sectionTotal("fill")} questions · 1 mark each<br>
+        ${SECTION_INFO.fill.time} seconds per question
+      </div>
+
+    </div>
+
+    <div class="warning">
+      <strong>Spelling Reminder:</strong><br>
+      Capital and small letters are both accepted. However, please write spelling carefully.
+      If the spelling is incorrect or the answer is incomplete, marks may be deducted.
+    </div>
+
+    <div class="rule-list">
+
+      <div class="rule">
+        <strong>Navigation:</strong><br>
+        Use Previous and Next for normal movement. For a non-adjacent question,
+        use “Need to go to another question?” and type the question number.
+      </div>
+
+      <div class="rule">
+        <strong>Question Timer:</strong><br>
+        Every question has its own independent timer. If you leave a question,
+        its remaining time is saved. It never resets or regenerates.
+      </div>
+
+      <div class="rule">
+        <strong>Auto Skip:</strong><br>
+        When a question's time is over, you are automatically moved to the next question.
+      </div>
+
+      <div class="rule">
+        <strong>Locked Questions:</strong><br>
+        When a question's timer reaches zero, that question is locked.
+        You may revisit it, but you cannot answer or modify it.
+      </div>
+
+      <div class="rule">
+        <strong>Progress:</strong><br>
+        Current Question and Test Progress are separate.
+        Jumping directly to a future question does not increase actual progress.
+      </div>
+
+      <div class="rule">
+        <strong>Section Order:</strong><br>
+        MCQ → Assertion & Reasoning → One Word → Fill in the Blanks.
+      </div>
+
+      <div class="rule">
+        <strong>Important:</strong><br>
+        Section scores and correct answers will not be shown while taking the test.
+      </div>
+
+    </div>
+
+    <button class="primary" onclick="showSectionIntro('mcq')">
+      Start Test
+    </button>
+  `);
+}
+
+
+/* =========================================================
+   SECTION INTRO
+   ========================================================= */
+
+function showSectionIntro(sec){
+
+  clearNormalTimer();
+
+  state.sec=sec;
+  state.idx=0;
+
+  if(state.furthest[sec]===0){
+    state.furthest[sec]=1;
+  }
+
+  const info=SECTION_INFO[sec];
+
+  let spelling="";
+
+  if(sec==="one" || sec==="fill"){
+    spelling=`
+      <div class="warning">
+        <strong>Spelling Reminder:</strong><br>
+        Capital and small letters are both accepted. However, please write spelling carefully.
+        If the spelling is incorrect or the answer is incomplete, marks may be deducted.
+      </div>
+    `;
+  }
+
+  setScreen(`
+    <div class="center">
+
+      <div class="logo">${info.icon}</div>
+
+      <h2>${info.title}</h2>
+
+      <p>
+        <strong>${info.title} — ${sectionTotal(sec)} questions</strong><br>
+        1 mark per question<br>
+        ${info.time} seconds per question
+      </p>
+
+      ${spelling}
+
+      <button class="primary" onclick="startSection('${sec}')">
+        Open ${info.title}
+      </button>
+
+    </div>
+  `,info.color);
+}
+
+function startSection(sec){
+
+  state.sec=sec;
+  state.idx=0;
+
+  if(state.furthest[sec]===0){
+    state.furthest[sec]=1;
+  }
+
+  renderQuestion(true);
+}
+
+
+/* =========================================================
+   NORMAL QUESTION
+   ========================================================= */
+
+function renderQuestion(startTimer=true){
+
+  clearNormalTimer();
+
+  const sec=state.sec;
+  const index=state.idx;
+  const list=QUESTIONS[sec];
+  const q=list[index];
+  const info=SECTION_INFO[sec];
+
+  const total=list.length;
+  const current=index+1;
+
+  const progress=Math.round(
+    (state.furthest[sec]/total)*100
+  );
+
+  const locked=state.locked[sec][index];
+  const saved=state.answers[sec][index];
+
+  let content="";
+
+  if(sec==="mcq" || sec==="assert"){
+
+    content=`
+      <div class="options">
+
+        ${q.options.map((option,i)=>`
+
+          <button
+            class="option ${saved===i?"selected":""}"
+            ${locked?"disabled":""}
+            onclick="chooseOption(${i})"
+          >
+            ${String.fromCharCode(65+i)}. ${option}
+          </button>
+
+        `).join("")}
+
+      </div>
+    `;
+
+  }else{
+
+    content=`
+      <input
+        id="textAnswer"
+        class="text-answer"
+        type="text"
+        autocomplete="off"
+        placeholder="Type your answer"
+        value="${esc(saved || "")}"
+        ${locked?"disabled":""}
+        oninput="saveTextAnswer(this.value)"
+      >
+    `;
+  }
+
+  screen.style.setProperty("--sec",info.color);
+  screen.className="card slide";
+
+  screen.innerHTML=`
+
+    <div class="question-top">
+
+      <span class="badge">
+        ${info.icon} ${sectionTitle(sec)}
+      </span>
+
+      ${ringHTML()}
+
+    </div>
+
+
+    <div class="current-progress">
+
+      <div>
+        <strong>Current Question:</strong>
+        ${current} / ${total}
+      </div>
+
+      <div>
+        <strong>Test Progress:</strong>
+        ${progress}% completed
+      </div>
+
+    </div>
+
+
+    <div class="progress-area">
+
+      <div class="progress-label">
+        <span>Actual Test Progress</span>
+        <span>${state.furthest[sec]} / ${total}</span>
+      </div>
+
+      <div class="progress-track">
+        <div
+          class="progress-fill"
+          style="width:${progress}%"
+        ></div>
+        <span
+          class="progress-car"
+          style="left:${progress}%"
+        >🚗</span>
+      </div>
+
+    </div>
+
+
+    <div class="question">
+      ${q.q}
+    </div>
+
+
+    ${content}
+
+
+    ${locked ? `
+      <div class="lock-note">
+
+        <strong>Question Locked</strong><br>
+
+        Your time for this question has expired.
+        You can no longer answer or modify this question.
+
+      </div>
+    `:""}
+
+
+    <div class="nav-area">
+
+      <div class="nav-buttons">
+
+        <button
+          class="secondary"
+          onclick="previousQuestion()"
+          ${index===0?"disabled":""}
+        >
+          ← Previous
+        </button>
+
+        <button
+          class="secondary"
+          onclick="nextQuestion()"
+        >
+          ${index===total-1?"Submit Section":"Next →"}
+        </button>
+
+      </div>
+
+
+      <div class="jump-area">
+
+        <button
+          class="jump-trigger"
+          onclick="openJump()"
+        >
+          Need to go to another question?
+        </button>
+
+        <div id="jumpForm" class="hidden">
+
+          <div class="jump-form">
+
+            <input
+              id="jumpInput"
+              class="jump-input"
+              type="number"
+              min="1"
+              max="${total}"
+              placeholder="Enter question number"
+            >
+
+            <button
+              class="secondary"
+              onclick="jumpToQuestion()"
+            >
+              Go
+            </button>
+
+          </div>
+
+          <div id="jumpError" class="jump-error"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  const left=state.remaining[sec][index];
+
+  updateRing(
+    left,
+    info.time,
+    formatTime(left),
+    left<=10
+  );
+
+  if(startTimer && !locked){
+    startNormalTimer();
+  }
+
+  if(sec==="one" || sec==="fill"){
+
+    setTimeout(()=>{
+      document.getElementById("textAnswer")?.focus();
+    },100);
+
+  }
+}
+
+
+/* =========================================================
+   NORMAL TIMER
+   =========================================================
+
+   remaining is NOT decreased every 100ms.
+   We calculate elapsed time from startedAt.
+   remaining is updated only when the question is left
+   or when the timer reaches zero.
+   ========================================================= */
+
+let lastTick=-1;
+
+function startNormalTimer(){
+
+  clearNormalTimer();
+
+  const sec=state.sec;
+  const index=state.idx;
+  const totalTime=SECTION_INFO[sec].time;
+
+  if(state.locked[sec][index]){
+    return;
+  }
+
+  if(state.remaining[sec][index]<=0){
+    state.remaining[sec][index]=0;
+    state.locked[sec][index]=true;
+    renderQuestion(false);
+    return;
+  }
+
+  lastTick=Math.ceil(state.remaining[sec][index]);
+
+  state.startedAt=Date.now();
+
+  state.timer=setInterval(()=>{
+
+    const elapsed=
+      (Date.now()-state.startedAt)/1000;
+
+    const left=Math.max(
+      0,
+      state.remaining[sec][index]-elapsed
+    );
+
+    updateRing(
+      left,
+      totalTime,
+      formatTime(left),
+      left<=10
+    );
+
+    const c=Math.ceil(left);
+
+    if(c!==lastTick){
+
+      lastTick=c;
+
+      if(c<=10 && c>0){
+        playSound("tick");
+      }
+    }
+
+    if(left<=0){
+
+      state.remaining[sec][index]=0;
+      state.locked[sec][index]=true;
+
+      clearNormalTimer();
+
+      playSound("buzzer");
+
+      autoAdvance();
+    }
+
+  },100);
+}
+
+
+function autoAdvance(){
+
+  const total=sectionTotal(state.sec);
+
+  if(state.idx<total-1){
+
+    state.idx++;
+
+    state.furthest[state.sec]=Math.max(
+      state.furthest[state.sec],
+      state.idx+1
+    );
+
+    renderQuestion(true);
+
+    showPopup(
+      "⏰ Time's up! You took the full time, so you moved to the next question.",
+      "warn"
+    );
+
+  }else{
+
+    showPopup(
+      "⏰ Time's up on the last question! Your section has been submitted.",
+      "warn"
+    );
+
+    submitSection();
+  }
+}
+
+
+function saveNormalTime(){
+
+  if(state.startedAt===null){
+    return;
+  }
+
+  const sec=state.sec;
+  const index=state.idx;
+
+  const elapsed=
+    (Date.now()-state.startedAt)/1000;
+
+  state.remaining[sec][index]=Math.max(
+    0,
+    state.remaining[sec][index]-elapsed
+  );
+
+  state.startedAt=null;
+}
+
+
+function clearNormalTimer(){
+
+  if(state.timer!==null){
+
+    clearInterval(state.timer);
+
+    state.timer=null;
+  }
+
+  state.startedAt=null;
+}
+
+
+/* =========================================================
+   NORMAL ANSWERS
+   ========================================================= */
+
+function chooseOption(value){
+
+  const sec=state.sec;
+  const index=state.idx;
+
+  if(state.locked[sec][index]){
+    return;
+  }
+
+  state.answers[sec][index]=value;
+
+  playSound("pop");
+  showPopup("✓ Your answer is saved","ok");
+
+  document.querySelectorAll(".option").forEach((el,i)=>{
+    el.classList.toggle(
+      "selected",
+      i===value
+    );
+  });
+}
+
+
+function saveTextAnswer(value){
+
+  const sec=state.sec;
+  const index=state.idx;
+
+  if(state.locked[sec][index]){
+    return;
+  }
+
+  state.answers[sec][index]=value;
+}
+
+
+/* =========================================================
+   NORMAL NAVIGATION
+   ========================================================= */
+
+function previousQuestion(){
+
+  saveNormalTime();
+  clearNormalTimer();
+
+  if(state.idx>0){
+
+    state.idx--;
+
+    renderQuestion(true);
+  }
+}
+
+
+function nextQuestion(){
+
+  saveNormalTime();
+  clearNormalTimer();
+
+  const total=sectionTotal(state.sec);
+
+  if(state.idx<total-1){
+
+    state.idx++;
+
+    /*
+      Only normal sequential movement changes actual progress.
+      Direct jumps never change furthest.
+    */
+
+    state.furthest[state.sec]=Math.max(
+      state.furthest[state.sec],
+      state.idx+1
+    );
+
+    renderQuestion(true);
+
+  }else{
+
+    submitSection();
+  }
+}
+
+
+/* =========================================================
+   DIRECT QUESTION JUMP
+   ========================================================= */
+
+function openJump(){
+
+  /*
+    The moment the user chooses to go to another question,
+    the current question timer is saved and paused.
+  */
+
+  saveNormalTime();
+  clearNormalTimer();
+
+  const form=document.getElementById("jumpForm");
+
+  if(form){
+    form.classList.remove("hidden");
+
+    setTimeout(()=>{
+      document.getElementById("jumpInput")?.focus();
+    },50);
+  }
+}
+
+
+function jumpToQuestion(){
+
+  const input=document.getElementById("jumpInput");
+  const error=document.getElementById("jumpError");
+
+  const target=Number(input.value);
+  const total=sectionTotal(state.sec);
+
+  if(
+    !Number.isInteger(target) ||
+    target<1 ||
+    target>total
+  ){
+
+    error.textContent=
+      `Please enter a question number from 1 to ${total}.`;
+
+    return;
+  }
+
+  const from=state.idx+1;
+
+  if(target===from){
+
+    renderQuestion(true);
+    return;
+  }
+
+  showJourney(from,target);
+}
+
+
+function showJourney(from,to){
+
+  const direction=to>from?1:-1;
+  const path=[];
+
+  for(
+    let n=from;
+    n!==to+direction;
+    n+=direction
+  ){
+
+    path.push(n);
+  }
+
+  setScreen(`
+    <div class="journey">
+
+      <div class="logo">→</div>
+
+      <h2>Moving to Question ${to}</h2>
+
+      <p class="muted">
+        Your current question timer has been saved.
+      </p>
+
+      <div
+        id="journeyLine"
+        class="journey-line"
+      ></div>
+
+    </div>
+  `,SECTION_INFO[state.sec].color);
+
+  let position=0;
+
+  function animate(){
+
+    if(position>=path.length){
+
+      state.idx=to-1;
+
+      renderQuestion(true);
+
+      return;
+    }
+
+    const line=document.getElementById("journeyLine");
+
+    if(line){
+
+      line.textContent=
+        path.slice(0,position+1).join(" → ");
+    }
+
+    position++;
+
+    setTimeout(animate,110);
+  }
+
+  animate();
+}
+
+
+/* =========================================================
+   SECTION SUBMISSION
+   ========================================================= */
+
+function submitSection(){
+
+  saveNormalTime();
+  clearNormalTimer();
+
+  playSound("chime");
+
+  const sec=state.sec;
+
+  if(sec==="fill"){
+
+    showFinalSubmission();
+
+    return;
+  }
+
+  const next=nextSection(sec);
+
+  setScreen(`
+
+    <div class="center">
+
+      <div class="logo">✓</div>
+
+      <h2>
+        Your ${sectionTitle(sec)} section has been submitted.
+      </h2>
+
+      <p class="muted">
+        Let's proceed to ${sectionTitle(next)}.
+      </p>
+
+      <button
+        class="primary"
+        onclick="showSectionIntro('${next}')"
+      >
+        Continue
+      </button>
+
+    </div>
+  `,SECTION_INFO[next].color);
+}
+
+
+/* =========================================================
+   FINAL SUBMISSION
+   ========================================================= */
+
+function showFinalSubmission(){
+
+  setScreen(`
+
+    <div class="center">
+
+      <div class="logo">✓</div>
+
+      <h2>Your test has been submitted.</h2>
+
+      <p class="muted">
+        Do you want to revise?
+      </p>
+
+      <div class="choice-row">
+
+        <button
+          class="primary"
+          onclick="startRevisionRules()"
+        >
+          Yes
+        </button>
+
+        <button
+          class="secondary"
+          onclick="finalizeTest()"
+        >
+          No
+        </button>
+
+      </div>
+
+    </div>
+  `);
+}
+
+
+/* =========================================================
+   REVISION RULES
+   ========================================================= */
+
+function startRevisionRules(){
+
+  if(state.revisionUsed){
+    return;
+  }
+
+  setScreen(`
+
+    <h2>Revision Rules</h2>
+
+    <div class="rule-list">
+
+      <div class="rule">
+        <strong>Total Revision Time: 2 minutes</strong><br>
+        There is one global 2-minute timer for the entire revision.
+        A new timer does not start for each section.
+      </div>
+
+      <div class="rule">
+        <strong>When does the timer run?</strong><br>
+        The timer runs only while actual revision questions are open.
+        It is paused on instruction, opening and confirmation pages.
+      </div>
+
+      <div class="rule">
+        <strong>After every section:</strong><br>
+        You will be asked whether you have revised the section
+        and whether you are sure you want to proceed.
+      </div>
+
+      <div class="rule">
+        <strong>Going back:</strong><br>
+        You can go back to a previous revision section whenever you want,
+        using the “Back to previous section” button on the opening page,
+        or the Previous button on the first question.
+      </div>
+
+      <div class="rule">
+        <strong>Next section opening:</strong><br>
+        The timer remains paused there. It resumes only when
+        you press “Open” for that section.
+      </div>
+
+      <div class="rule">
+        <strong>Answers:</strong><br>
+        Changed answers become your final answers.
+        Unchanged saved answers remain final.
+      </div>
+
+      <div class="rule">
+        <strong>Timer expiry:</strong><br>
+        If the 2-minute revision timer reaches zero,
+        the test is automatically finalized.
+      </div>
+
+    </div>
+
+    <button
+      class="primary"
+      onclick="startRevision()"
+    >
+      Start Revision
+    </button>
+
+    <button
+      class="secondary"
+      style="width:100%;margin-top:12px"
+      onclick="showFinalSubmission()"
+    >
+      ← Back
+    </button>
+
+  `);
+}
+
+
+function startRevision(){
+
+  state.revisionUsed=true;
+
+  state.revision.sec="mcq";
+  state.revision.idx=0;
+  state.revision.remaining=120;
+
+  showRevisionSectionIntro("mcq");
+}
+
+
+/* =========================================================
+   REVISION SECTION INTRO
+   ========================================================= */
+
+function showRevisionSectionIntro(sec){
+
+  clearRevisionTimer();
+
+  state.revision.sec=sec;
+  state.revision.idx=0;
+
+  const info=SECTION_INFO[sec];
+
+  let spelling="";
+
+  if(sec==="one" || sec==="fill"){
+
+    spelling=`
+      <div class="warning">
+        <strong>Spelling Reminder:</strong><br>
+        Capital and small letters are both accepted. However, please write spelling carefully.
+        If the spelling is incorrect or the answer is incomplete, marks may be deducted.
+      </div>
+    `;
+  }
+
+  const backButton=
+    sectionIndex(sec)>0
+      ?`
+        <button
+          class="secondary"
+          style="width:100%;margin-top:12px"
+          onclick="backRevisionSection()"
+        >
+          ← Back to previous section
+        </button>
+      `
+      :"";
+
+  setScreen(`
+
+    <div class="center">
+
+      <div class="logo">${info.icon}</div>
+
+      <h2>Revision — ${info.title}</h2>
+
+      <p>
+        ${info.title}: ${sectionTotal(sec)} questions<br>
+        Global revision time remaining:
+        <strong>${formatRevisionTime()}</strong>
+      </p>
+
+      ${spelling}
+
+      <button
+        class="primary"
+        onclick="openRevisionSection()"
+      >
+        Open ${info.title}
+      </button>
+
+      ${backButton}
+
+    </div>
+
+  `,info.color);
+}
+
+
+function backRevisionSection(){
+
+  const prev=SECTION_ORDER[
+    sectionIndex(state.revision.sec)-1
+  ];
+
+  if(prev){
+    showRevisionSectionIntro(prev);
+  }
+}
+
+
+/* =========================================================
+   REVISION QUESTION
+   ========================================================= */
+
+function openRevisionSection(){
+
+  renderRevisionQuestion(true);
+}
+
+
+function renderRevisionQuestion(startTimer=true){
+
+  clearRevisionTimer();
+
+  const sec=state.revision.sec;
+  const index=state.revision.idx;
+  const info=SECTION_INFO[sec];
+
+  const q=QUESTIONS[sec][index];
+
+  const saved=state.answers[sec][index];
+
+  let content="";
+
+  if(sec==="mcq" || sec==="assert"){
+
+    content=`
+      <div class="options">
+
+        ${q.options.map((option,i)=>`
+
+          <button
+            class="option ${saved===i?"selected":""}"
+            onclick="revisionChooseOption(${i})"
+          >
+            ${String.fromCharCode(65+i)}. ${option}
+          </button>
+
+        `).join("")}
+
+      </div>
+    `;
+
+  }else{
+
+    content=`
+      <input
+        id="revisionTextAnswer"
+        class="text-answer"
+        type="text"
+        autocomplete="off"
+        placeholder="Type your answer"
+        value="${esc(saved || "")}"
+        oninput="revisionSaveText(this.value)"
+      >
+    `;
+  }
+
+  const isFirstOfAll=
+    index===0 && sectionIndex(sec)===0;
+
+  screen.style.setProperty("--sec",info.color);
+  screen.className="card slide";
+
+  screen.innerHTML=`
+
+    <div class="question-top">
+
+      <span class="badge">
+        Revision · ${info.icon} ${sectionTitle(sec)}
+      </span>
+
+      ${ringHTML()}
+
+    </div>
+
+
+    <div class="current-progress">
+
+      <div>
+        <strong>Current Question:</strong>
+        ${index+1} / ${sectionTotal(sec)}
+      </div>
+
+    </div>
+
+
+    <div class="question">
+      ${q.q}
+    </div>
+
+
+    ${content}
+
+
+    <div class="nav-area">
+
+      <div class="nav-buttons">
+
+        <button
+          class="secondary"
+          onclick="revisionPrevious()"
+          ${isFirstOfAll?"disabled":""}
+        >
+          ← Previous
+        </button>
+
+        <button
+          class="secondary"
+          onclick="revisionNext()"
+        >
+          ${index===sectionTotal(sec)-1
+            ?"Finish Section"
+            :"Next →"}
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  const left=state.revision.remaining;
+
+  updateRing(
+    left,
+    120,
+    formatRevisionTimeFrom(left),
+    left<=15
+  );
+
+  if(startTimer){
+    startRevisionTimer();
+  }
+}
+
+
+/* =========================================================
+   GLOBAL REVISION TIMER
+   ========================================================= */
+
+let lastRevTick=-1;
+
+function startRevisionTimer(){
+
+  clearRevisionTimer();
+
+  if(state.revision.remaining<=0){
+
+    finalizeTest();
+
+    return;
+  }
+
+  lastRevTick=Math.ceil(state.revision.remaining);
+
+  state.revision.startedAt=Date.now();
+
+  state.revision.timer=setInterval(()=>{
+
+    const elapsed=
+      (Date.now()-state.revision.startedAt)/1000;
+
+    const left=Math.max(
+      0,
+      state.revision.remaining-elapsed
+    );
+
+    updateRing(
+      left,
+      120,
+      formatRevisionTimeFrom(left),
+      left<=15
+    );
+
+    const c=Math.ceil(left);
+
+    if(c!==lastRevTick){
+
+      lastRevTick=c;
+
+      if(c<=15 && c>0){
+        playSound("tick");
+      }
+    }
+
+    if(left<=0){
+
+      state.revision.remaining=0;
+
+      clearRevisionTimer();
+
+      playSound("buzzer");
+
+      finalizeTest();
+    }
+
+  },100);
+}
+
+
+function saveRevisionTime(){
+
+  if(state.revision.startedAt===null){
+    return;
+  }
+
+  const elapsed=
+    (Date.now()-state.revision.startedAt)/1000;
+
+  state.revision.remaining=Math.max(
+    0,
+    state.revision.remaining-elapsed
+  );
+
+  state.revision.startedAt=null;
+}
+
+
+function clearRevisionTimer(){
+
+  if(state.revision.timer!==null){
+
+    clearInterval(state.revision.timer);
+
+    state.revision.timer=null;
+  }
+
+  state.revision.startedAt=null;
+}
+
+
+function formatRevisionTime(){
+
+  return formatRevisionTimeFrom(
+    state.revision.remaining
+  );
+}
+
+
+function formatRevisionTimeFrom(seconds){
+
+  const totalSeconds=Math.max(
+    0,
+    Math.ceil(seconds)
+  );
+
+  const minutes=Math.floor(
+    totalSeconds/60
+  );
+
+  const secondsPart=totalSeconds%60;
+
+  return `${String(minutes).padStart(2,"0")}:${String(secondsPart).padStart(2,"0")}`;
+}
+
+
+/* =========================================================
+   REVISION ANSWERS
+   ========================================================= */
+
+function revisionChooseOption(value){
+
+  state.answers[
+    state.revision.sec
+  ][state.revision.idx]=value;
+
+  playSound("pop");
+  showPopup("✓ Your answer is saved","ok");
+
+  document.querySelectorAll(".option").forEach((el,i)=>{
+
+    el.classList.toggle(
+      "selected",
+      i===value
+    );
+
+  });
+}
+
+
+function revisionSaveText(value){
+
+  state.answers[
+    state.revision.sec
+  ][state.revision.idx]=value;
+}
+
+
+/* =========================================================
+   REVISION NAVIGATION
+   ========================================================= */
+
+function revisionPrevious(){
+
+  saveRevisionTime();
+  clearRevisionTimer();
+
+  if(state.revision.idx>0){
+
+    state.revision.idx--;
+
+    renderRevisionQuestion(true);
+
+    return;
+  }
+
+  /* first question of a section: go to the previous section's last question */
+
+  const prev=SECTION_ORDER[
+    sectionIndex(state.revision.sec)-1
+  ];
+
+  if(prev){
+
+    state.revision.sec=prev;
+    state.revision.idx=sectionTotal(prev)-1;
+
+    renderRevisionQuestion(true);
+  }
+}
+
+
+function revisionNext(){
+
+  saveRevisionTime();
+  clearRevisionTimer();
+
+  const sec=state.revision.sec;
+
+  const total=sectionTotal(sec);
+
+  if(state.revision.idx<total-1){
+
+    state.revision.idx++;
+
+    renderRevisionQuestion(true);
+
+  }else{
+
+    showRevisionConfirmation(sec);
+  }
+}
+
+
+/* =========================================================
+   REVISION CONFIRMATION
+   ========================================================= */
+
+function showRevisionConfirmation(sec){
+
+  clearRevisionTimer();
+
+  const isLast=
+    sectionIndex(sec)===SECTION_ORDER.length-1;
+
+  setScreen(`
+
+    <div class="center">
+
+      <div class="logo">?</div>
+
+      <h2>
+        Have you revised ${sectionTitle(sec)}?
+      </h2>
+
+      <p class="muted">
+        Are you sure you want to proceed?
+      </p>
+
+      <div class="warning">
+        You can still come back to this revision section later if you need to.
+      </div>
+
+      <div class="choice-row">
+
+        <button
+          class="primary"
+          onclick="${isLast
+            ?"finishRevision()"
+            :"proceedRevision()"}"
+        >
+          ${isLast
+            ?"Yes, Finish Revision"
+            :"Yes, Proceed"}
+        </button>
+
+        <button
+          class="secondary"
+          onclick="showRevisionSectionIntro('${sec}')"
+        >
+          No, Go Back
+        </button>
+
+      </div>
+
+    </div>
+
+  `,SECTION_INFO[sec].color);
+}
+
+
+function proceedRevision(){
+
+  const current=state.revision.sec;
+
+  const next=nextSection(current);
+
+  if(!next){
+
+    finishRevision();
+
+    return;
+  }
+
+  state.revision.sec=next;
+  state.revision.idx=0;
+
+  /*
+    Timer remains paused on this opening page.
+  */
+
+  showRevisionSectionIntro(next);
+}
+
+
+function finishRevision(){
+
+  clearRevisionTimer();
+
+  finalizeTest();
+}
+
+
+/* =========================================================
+   TEXT ANSWER CHECKING
+   ========================================================= */
+
+function normalizeText(value){
+
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g," ");
+}
+
+
+function levenshtein(a,b){
+
+  const m=a.length;
+  const n=b.length;
+
+  const dp=
+    Array.from(
+      {length:m+1},
+      ()=>Array(n+1).fill(0)
+    );
+
+  for(let i=0;i<=m;i++){
+    dp[i][0]=i;
+  }
+
+  for(let j=0;j<=n;j++){
+    dp[0][j]=j;
+  }
+
+  for(let i=1;i<=m;i++){
+
+    for(let j=1;j<=n;j++){
+
+      const cost=
+        a[i-1]===b[j-1]
+          ?0
+          :1;
+
+      dp[i][j]=Math.min(
+        dp[i-1][j]+1,
+        dp[i][j-1]+1,
+        dp[i-1][j-1]+cost
+      );
+    }
+  }
+
+  return dp[m][n];
+}
+
+
+/*
+  Spelling rule:
+
+  1. Exact match → correct
+  2. One missing final character → accepted
+  3. One-character typing mistake → accepted
+  4. Broad fuzzy matching → NOT accepted
+  5. Typo tolerance only for answers of 4+ letters
+     (so short answers like "1", "O", "ECG" must be exact)
+*/
+
+function textAnswerResult(user,question){
+
+  const input=normalizeText(user);
+
+  if(!input){
+
+    return {
+      correct:false,
+      acceptedTypo:false,
+      canonical:question.answer
+    };
+  }
+
+  const answers=
+    question.answers.map(normalizeText);
+
+  for(const canonical of answers){
+
+    if(input===canonical){
+
+      return {
+        correct:true,
+        acceptedTypo:false,
+        canonical
+      };
+    }
+
+    if(canonical.length<4){
+      continue;
+    }
+
+    if(
+      input.length===canonical.length-1 &&
+      canonical.startsWith(input)
+    ){
+
+      return {
+        correct:true,
+        acceptedTypo:true,
+        canonical
+      };
+    }
+
+
+    if(
+      input.length===canonical.length &&
+      levenshtein(input,canonical)===1
+    ){
+
+      return {
+        correct:true,
+        acceptedTypo:true,
+        canonical
+      };
+    }
+  }
+
+  return {
+    correct:false,
+    acceptedTypo:false,
+    canonical:answers[0]
+  };
+}
+
+
+/* =========================================================
+   SCORE
+   ========================================================= */
+
+function calculateScores(){
+
+  const scores={
+    mcq:0,
+    assert:0,
+    one:0,
+    fill:0
+  };
+
+
+  for(const sec of ["mcq","assert"]){
+
+    QUESTIONS[sec].forEach((q,i)=>{
+
+      if(state.answers[sec][i]===q.answer){
+        scores[sec]++;
+      }
+
+    });
+  }
+
+
+  for(const sec of ["one","fill"]){
+
+    QUESTIONS[sec].forEach((q,i)=>{
+
+      const result=
+        textAnswerResult(
+          state.answers[sec][i],
+          q
+        );
+
+      if(result.correct){
+        scores[sec]++;
+      }
+
+    });
+  }
+
+
+  scores.total=
+    scores.mcq+
+    scores.assert+
+    scores.one+
+    scores.fill;
+
+
+  scores.max=
+    sectionTotal("mcq")+
+    sectionTotal("assert")+
+    sectionTotal("one")+
+    sectionTotal("fill");
+
+
+  scores.percentage=
+    scores.max===0
+      ?0
+      :(scores.total/scores.max)*100;
+
+
+  return scores;
+}
+
+
+/* =========================================================
+   FINALIZATION
+   ========================================================= */
+
+function finalizeTest(){
+
+  clearNormalTimer();
+  clearRevisionTimer();
+
+  state.scores=calculateScores();
+
+  showFinalization();
+}
+
+
+function showFinalization(){
+
+  setScreen(`
+
+    <div class="center">
+
+      <div class="logo">✓</div>
+
+      <h2>Your test has been finalized.</h2>
+
+      <p class="muted">
+        Check your score
+      </p>
+
+      <button
+        class="primary"
+        onclick="showScorePage()"
+      >
+        Check Your Score
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+/* =========================================================
+   SCORE PAGE
+   ========================================================= */
+
+function animateScore(total,pct){
+
+  const numEl=document.getElementById("scoreNum");
+  const pctEl=document.getElementById("pctNum");
+
+  if(!numEl || !pctEl){
+    return;
+  }
+
+  const duration=1200;
+  const start=performance.now();
+
+  function frame(now){
+
+    const t=Math.min(1,(now-start)/duration);
+    const ease=1-Math.pow(1-t,3);
+
+    numEl.textContent=Math.round(total*ease);
+    pctEl.textContent=(pct*ease).toFixed(2)+"%";
+
+    if(t<1){
+      requestAnimationFrame(frame);
+    }else{
+      numEl.textContent=total;
+      pctEl.textContent=pct.toFixed(2)+"%";
+    }
+  }
+
+  requestAnimationFrame(frame);
+}
+
+
+function showScorePage(){
+
+  if(!state.scores){
+    state.scores=calculateScores();
+  }
+
+  const s=state.scores;
+  const pct=s.percentage;
+
+  const msg=
+    pct>=90?"Outstanding! 🌟":
+    pct>=60?"Good job! 👍":
+             "Keep practicing 💪";
+
+  const medal=
+    pct>=90?{icon:"🥇",name:"GOLD"}:
+    pct>=75?{icon:"🥈",name:"SILVER"}:
+    pct>=60?{icon:"🥉",name:"BRONZE"}:
+             {icon:"🎯",name:"KEEP GOING"};
+
+  setScreen(`
+
+    <div class="center">
+
+      <div class="medal">${medal.icon}</div>
+
+      <div class="medal-name">${medal.name}</div>
+
+      <h2 style="margin-top:12px">Final Score</h2>
+
+      <p class="muted" style="margin:0">
+        Well done, ${esc(state.name)}!
+      </p>
+
+      <p class="result-msg">${msg}</p>
+
+    </div>
+
+
+    <div class="total-score">
+
+      <div class="big">
+        <span id="scoreNum">0</span> / ${s.max}
+      </div>
+
+      <div>
+        <strong id="pctNum">0.00%</strong>
+      </div>
+
+    </div>
+
+
+    <div class="score-grid">
+
+      ${scoreRow(
+        SECTION_INFO.mcq.icon+" MCQ",
+        s.mcq,
+        sectionTotal("mcq"),
+        SECTION_INFO.mcq.color
+      )}
+
+      ${scoreRow(
+        SECTION_INFO.assert.icon+" Assertion & Reasoning",
+        s.assert,
+        sectionTotal("assert"),
+        SECTION_INFO.assert.color
+      )}
+
+      ${scoreRow(
+        SECTION_INFO.one.icon+" One Word",
+        s.one,
+        sectionTotal("one"),
+        SECTION_INFO.one.color
+      )}
+
+      ${scoreRow(
+        SECTION_INFO.fill.icon+" Fill in the Blanks",
+        s.fill,
+        sectionTotal("fill"),
+        SECTION_INFO.fill.color
+      )}
+
+    </div>
+
+
+    <h3>Check Answers</h3>
+
+    <div class="review-grid">
+
+      ${SECTION_ORDER.map(sec=>`
+
+        <button
+          class="secondary"
+          onclick="confirmAnswerReview('${sec}')"
+        >
+          Check ${sectionTitle(sec)} Answers
+        </button>
+
+      `).join("")}
+
+    </div>
+
+
+    <button
+      class="whatsapp-btn"
+      style="margin-top:22px"
+      onclick="shareWhatsApp()"
+    >
+      📲 Share on WhatsApp
+    </button>
+
+
+    <div style="margin-top:14px">
+
+      <button
+        class="primary"
+        onclick="restartTest()"
+      >
+        Restart Test
+      </button>
+
+    </div>
+
+  `);
+
+  animateScore(s.total,pct);
+
+  setTimeout(()=>{
+    document.querySelectorAll(".mini-fill").forEach(el=>{
+      el.style.width=el.dataset.w+"%";
+    });
+  },80);
+
+  if(!state.celebrated){
+
+    state.celebrated=true;
+
+    if(pct>=60){
+      playSound("jingle");
+      launchConfetti();
+    }else{
+      playSound("soft");
+    }
+  }
+}
+
+
+/* =========================================================
+   WHATSAPP SHARE + FEEDBACK
+   ========================================================= */
+
+function feedbackText(name,pct){
+
+  const p=Math.round(pct);
+
+  if(pct>=90) return name+" scored "+p+"% and has worked really hard. Outstanding performance, keep up this excellent effort! 🌟";
+
+  if(pct>=75) return name+" scored "+p+"% and has done very well. A little more revision can take this result to the top. 👏";
+
+  if(pct>=60) return name+" scored "+p+"%, which is a good effort. With a bit more hard work and revision, "+name+" can score even higher. 👍";
+
+  if(pct>=40) return name+" scored "+p+"%, which is an average result. "+name+" can work harder, and regular revision of the chapter will help improve the marks. 🙂";
+
+  return name+" scored "+p+"% and needs to work much harder. Please read the chapter again carefully and practise more. 💪";
+}
+
+function resultText(){
+
+  const s=state.scores;
+
+  return (
+    "📘 *Science Test Result*\n"+
+    "Chapter: Measurement of Time & Motion\n\n"+
+    "👤 Student: "+state.name+"\n"+
+    "📅 Date: "+new Date().toLocaleDateString()+"\n\n"+
+    "🧪 MCQ: "+s.mcq+" / "+sectionTotal("mcq")+"\n"+
+    "⚖️ Assertion & Reasoning: "+s.assert+" / "+sectionTotal("assert")+"\n"+
+    "✍️ One Word: "+s.one+" / "+sectionTotal("one")+"\n"+
+    "📝 Fill in the Blanks: "+s.fill+" / "+sectionTotal("fill")+"\n\n"+
+    "🏆 *Total: "+s.total+" / "+s.max+" ("+s.percentage.toFixed(2)+"%)*\n\n"+
+    "💬 Feedback: "+feedbackText(state.name,s.percentage)
+  );
+}
+
+function shareWhatsApp(){
+
+  if(!state.scores){
+    state.scores=calculateScores();
+  }
+
+  window.open(
+    "https://wa.me/?text="+encodeURIComponent(resultText()),
+    "_blank"
+  );
+}
+
+
+function scoreRow(name,score,max,color){
+
+  const w=max===0?0:(score/max)*100;
+
+  return `
+    <div class="score-row">
+
+      <div class="score-line">
+
+        <span>${name}</span>
+
+        <strong>
+          ${score} / ${max}
+        </strong>
+
+      </div>
+
+      <div class="mini-track">
+        <div
+          class="mini-fill"
+          data-w="${w}"
+          style="background:${color}"
+        ></div>
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* =========================================================
+   ANSWER REVIEW CONFIRMATION
+   ========================================================= */
+
+function confirmAnswerReview(sec){
+
+  setScreen(`
+
+    <div class="center">
+
+      <div class="logo">?</div>
+
+      <h2>
+        Check ${sectionTitle(sec)}?
+      </h2>
+
+      <p class="muted">
+        Since you have selected ${sectionTitle(sec)},
+        do you want to check the answers?
+      </p>
+
+      <div class="choice-row">
+
+        <button
+          class="primary"
+          onclick="showAnswerSheet('${sec}')"
+        >
+          Yes
+        </button>
+
+        <button
+          class="secondary"
+          onclick="showScorePage()"
+        >
+          No
+        </button>
+
+      </div>
+
+    </div>
+
+  `,SECTION_INFO[sec].color);
+}
+
+
+/* =========================================================
+   ANSWER SHEET
+   ========================================================= */
+
+function showAnswerSheet(sec){
+
+  const list=QUESTIONS[sec];
+
+  const cards=list.map((q,i)=>{
+
+    const user=state.answers[sec][i];
+
+    let correct=false;
+    let acceptedTypo=false;
+    let canonical="";
+
+    if(sec==="mcq" || sec==="assert"){
+
+      correct=user===q.answer;
+
+      canonical=q.options[q.answer];
+
+    }else{
+
+      const result=
+        textAnswerResult(user,q);
+
+      correct=result.correct;
+      acceptedTypo=result.acceptedTypo;
+      canonical=q.answer;
+    }
+
+
+    let userDisplay="";
+
+    if(sec==="mcq" || sec==="assert"){
+
+      userDisplay=
+        user===null
+          ?"Not answered"
+          :esc(q.options[user]);
+
+    }else{
+
+      userDisplay=
+        String(user || "").trim()
+          ?esc(user)
+          :"Not answered";
+    }
+
+
+    return `
+
+      <div
+        class="review-card
+        ${correct?"correct":"wrong"}"
+      >
+
+        <div class="review-q">
+          Q${i+1}. ${q.q}
+        </div>
+
+
+        <div class="answer-line">
+          <strong>Your answer:</strong>
+          ${userDisplay}
+        </div>
+
+
+        <div class="answer-line">
+          <strong>Correct answer:</strong>
+          ${esc(canonical)}
+        </div>
+
+
+        ${
+          correct
+          ?
+          `<div class="correct-text">
+            ✓ Correct
+          </div>`
+          :
+          `<div class="wrong-text">
+            ✗ Your answer is incorrect.
+          </div>`
+        }
+
+
+        ${
+          acceptedTypo
+          ?
+          `
+            <div class="explanation">
+
+              <strong>
+                Did you mean “${esc(canonical)}”?
+              </strong><br>
+
+              Your answer was accepted as correct.<br>
+
+              Please pay attention to spelling next time.
+
+            </div>
+          `
+          :""
+        }
+
+
+        <div class="explanation">
+
+          <strong>Explanation:</strong><br>
+
+          ${q.explanation}
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+
+  setScreen(`
+
+    <h2>
+      ${SECTION_INFO[sec].icon} ${sectionTitle(sec)} — Answer Sheet
+    </h2>
+
+    <p class="muted">
+      These are your final saved answers.
+      Any changes made during revision are reflected here.
+    </p>
+
+    <div class="review-grid">
+      ${cards}
+    </div>
+
+    <div style="margin-top:24px">
+
+      <button
+        class="primary"
+        onclick="showScorePage()"
+      >
+        Back to Score
+      </button>
+
+    </div>
+
+  `,SECTION_INFO[sec].color);
+}
+
+
+/* =========================================================
+   RESTART
+   ========================================================= */
+
+function restartTest(){
+
+  // Stop any running timers and effects.
+  clearNormalTimer();
+  clearRevisionTimer();
+  stopConfetti();
+
+  // Reset name and question navigation.
+  state.name="";
+  state.sec="mcq";
+  state.idx=0;
+
+  // Reset all saved answers.
+  state.answers=makeAnswers();
+
+  // Reset the time available for every question.
+  state.remaining=makeRemaining();
+
+  // Unlock every question.
+  state.locked=makeLocked();
+
+  // Reset actual test progress.
+  state.furthest={
+    mcq:0,
+    assert:0,
+    one:0,
+    fill:0
+  };
+
+  // Reset normal timer state.
+  state.timer=null;
+  state.startedAt=null;
+
+  // Allow revision to be used again.
+  state.revisionUsed=false;
+
+  // Reset the revision section and its global two-minute timer.
+  state.revision={
+    sec:"mcq",
+    idx:0,
+    remaining:120,
+    timer:null,
+    startedAt:null
+  };
+
+  // Clear the previous score.
+  state.scores=null;
+  state.celebrated=false;
+
+  // Return to the welcome screen.
+  showWelcome();
+}
+
+</script>
+
+<!-- =========================================================
+     SCHOOL INTRO SCRIPT (your code, unchanged except finish())
+     ========================================================= -->
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var timers=[],name="",done=false,voice=null;
+
+  /* ---- scenery ---- */
+  function fill(id,html){$(id+'1').innerHTML=html;$(id+'2').innerHTML=html}
+  var b='',cl='',tr='',i;
+  var bw=[9,12,8,14,10,11,9], bh=[34,46,28,52,38,44,32];
+  for(i=0;i<7;i++){b+='<div class="bd" style="left:'+(i*14.2+2)+'%;width:'+bw[i]+'%;height:'+bh[i]+'vh;opacity:.7"><i style="left:18%;top:12%"></i><i style="left:62%;top:12%"></i><i style="left:18%;top:36%"></i><i style="left:62%;top:36%"></i></div>'}
+  for(i=0;i<5;i++){cl+='<div class="cl" style="left:'+(i*21+4)+'%;top:'+(8+(i%3)*9)+'vh;width:'+(14+(i%2)*6)+'vw"></div>'}
+  for(i=0;i<9;i++){tr+='<div class="tr" style="left:'+(i*11.5+3)+'%;transform:scale('+(0.9+(i%3)*.25)+');transform-origin:bottom"></div>'}
+  fill('f',b);fill('c',cl);fill('m',tr);
+
+  /* ---- helpers ---- */
+  function later(fn,ms){timers.push(setTimeout(fn,ms))}
+  function sub(t){var s=$('sub');s.textContent=t;s.classList.add('on')}
+  function finish(){
+    if(done)return;done=true;
+    timers.forEach(clearTimeout);
+    window.studentName=name;
+    try{sessionStorage.setItem('studentName',name)}catch(e){}
+    $('intro').classList.add('fadeout');
+    setTimeout(function(){
+      $('intro').style.display='none';
+      document.body.classList.remove('intro-active');
+      /* naam welcome screen ke Student Name box me pehle se bhar do */
+      var wn=document.getElementById('name');
+      if(wn){wn.value=name}
+      window.scrollTo(0,0);
+    },700);
+  }
+
+  /* ---- sequence ---- */
+  function play(){
+    $('start').style.display='none';$('skip').style.display='block';
+    $('intro').querySelectorAll('.run').forEach(function(e){e.classList.remove('paused')});
+    sub('चलो स्कूल चलते हैं 🎒');
+    later(function(){$('sub').classList.remove('on');$('ask').style.display='block'},2500);
+  }
+  /* "Yes" dabane ke baad ka poora scene */
+  function afterYes(){
+    $('ask').style.display='none';
+    sub('चलो '+name+'! अपना टेस्ट अच्छे से देना 💪');
+    later(function(){$('school').classList.add('in')},800);
+    later(function(){sub('तुमने इस टेस्ट के लिए अच्छी तैयारी की है 🌟')},2600);
+    later(function(){
+      ['clouds','far','mid'].forEach(function(k){$(k).classList.add('paused')});
+      $('dash').classList.add('paused');
+      sub('ऑल द बेस्ट, '+name+'! 🍀');
+      var d=$('inside').getBoundingClientRect(),k=$('kid').getBoundingClientRect();
+      $('kid').style.left=(d.left+d.width/2-k.width/2)+'px';
+    },4100);
+    later(function(){$('kid').classList.add('still');$('school').classList.add('open')},7700);
+    later(function(){$('kid').classList.add('gone')},8700);
+    later(function(){
+      var d=$('inside').getBoundingClientRect(),s=$('scene');
+      s.style.transformOrigin=(d.left+d.width/2)+'px '+(d.top+d.height/2)+'px';
+      s.style.transform='scale(5)';$('sub').classList.remove('on');
+    },9300);
+    later(function(){$('lk1').textContent=name+'!';$('luck').classList.add('on')},10400);
+    later(finish,13200);
+  }
+  $('yes').onclick=afterYes;
+  $('no').onclick=function(){$('asknote').textContent='कोई बात नहीं '+name+', तैयार हो जाओ, फिर Yes दबाना 😊'};
+
+  $('go').onclick=function(){
+    name=$('nm').value.trim();
+    if(!name){$('err').textContent='Please enter your name 🙂';$('nm').focus();return}
+    name=name.replace(/[<>&]/g,'');
+    play();
+  };
+  $('nm').addEventListener('keydown',function(e){if(e.key==='Enter')$('go').click()});
+  $('skip').onclick=finish;
+
+  /* start se pehle scenery ruki rahe */
+  $('intro').querySelectorAll('.run').forEach(function(e){e.classList.add('paused')});
+  try{var sv=sessionStorage.getItem('studentName');if(sv)$('nm').value=sv}catch(e){}
+})();
+</script>
+
+</body>
+</html>
